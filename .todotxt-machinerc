@@ -4,7 +4,7 @@ show-toolbar = True
 show-filter-panel = True
 enable-borders = False
 enable-word-wrap = True
-colorscheme = base16-dark
+colorscheme = solarized-dark
 
 [keys]
 append = n
