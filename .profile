@@ -5,10 +5,12 @@ source ~/.script_utils
 source ~/.prompt
 source ~/.alias
 
+# dotfiles_local must not be pushed to git
 touch ~/.dotfiles_local
 source ~/.dotfiles_local
 
-if [ -f ~/.Anish-MBP ]; then
+# .host file must not be pushed to git
+if [ -f ~/.host-Anish-MBP ]; then
     source ~/.Anish-MBP
     source ~/.config_mac
 fi
