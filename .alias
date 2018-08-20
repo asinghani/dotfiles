@@ -103,3 +103,5 @@ viewmd() {
     mdpdf $1 "/tmp/md_$OUT_FILE.pdf"
     open "/tmp/md_$OUT_FILE.pdf"
 }
+
+alias todo="touch ./todos.txt; todotxt-machine ./todos.txt"
