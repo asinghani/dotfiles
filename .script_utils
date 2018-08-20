@@ -1,0 +1,58 @@
+#!/bin/bash
+
+bold=$(tput bold)
+underline=$(tput sgr 0 1)
+reset=$(tput sgr0)
+
+purple=$(tput setaf 171)
+red=$(tput setaf 1)
+green=$(tput setaf 76)
+tan=$(tput setaf 3)
+blue=$(tput setaf 38)
+
+p_header() { printf "\n${bold}${purple}==========  %s  ==========${reset}\n" "$@";}
+p_arrow() { printf "➜ $*\n";}
+p_success() { printf "${green}✔ %s${reset}\n" "$@";}
+p_error() { printf "${red}✖ %s${reset}\n" "$@";}
+p_warning() { printf "${tan}➜ %s${reset}\n" "$@";}
+p_underline() { printf "${underline}${bold}%s${reset}\n" "$@";}
+p_bold() { printf "${bold}%s${reset}\n" "$@";}
+p_note() { printf "${underline}${bold}${blue}Note:${reset}  ${blue}%s${reset}\n" "$*";}
+
+
+if [ -n "$ZSH_VERSION" ]; then
+    # Zsh version of seek_confirmation
+    seek_confirmation() {
+        printf "\n${bold}$*${reset}"
+        read -q "REPLY? (y/n) " -n 1
+        printf "\n"
+    }
+elif [ -n "$BASH_VERSION" ]; then
+    # Bash version of seek_confirmation
+    seek_confirmation() {
+        printf "\n${bold}$*${reset}"
+        read -p " (y/n) " -n 1
+        printf "\n"
+    }
+fi
+
+is_confirmed() {
+    if [[ "$REPLY" =~ ^[Yy]$ ]]; then
+        return 0
+    fi
+    return 1
+}
+
+is_os() {
+    if [[ "${OSTYPE}" == $1* ]]; then
+        return 0
+    fi
+    return 1
+}
+
+is_mac() {
+    is_os "darwin"
+}
+
+alias succeed="p_success Succeeding...;"
+alias fail="p_error Failing...; intentionally_fail; "

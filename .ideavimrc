@@ -1,0 +1,70 @@
+set nocompatible
+filetype off
+
+filetype plugin indent on
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+syntax on
+set background=dark
+colorscheme default
+
+set clipboard=unnamed
+
+set encoding=utf-8
+
+set mouse=a
+set ruler
+set ic
+
+set number 
+
+let mapleader = ';'
+
+map <C-V> :action ActivateProjectToolWindow<CR>
+
+nnoremap <C-J> <C-W>J
+nnoremap <C-K> <C-W>K
+nnoremap <C-L> <C-W>L
+nnoremap <C-H> <C-W>H
+
+nmap <leader>= <C-W>=
+
+# call submode#enter_with('grow/shrink', 'n', 's', '<leader>l', ':vertical resize -1<CR>')
+# call submode#enter_with('grow/shrink', 'n', 's', '<leader>h', ':vertical resize +1<CR>')
+# call submode#map('grow/shrink', 'n', 's', 'l', ':vertical resize -1<CR>')
+# call submode#map('grow/shrink', 'n', 's', 'h', ':vertical resize +1<CR>')
+
+
+# call submode#enter_with('grow/shrink', 'n', 's', '<leader>k', ':resize -1<CR>')
+# call submode#enter_with('grow/shrink', 'n', 's', '<leader>j', ':resize +1<CR>')
+# call submode#map('grow/shrink', 'n', 's', 'k', ':resize -1<CR>')
+# call submode#map('grow/shrink', 'n', 's', 'j', ':resize +1<CR>')
+
+set backspace=2
+
+nmap <leader>c :action CloseActiveTab<CR>
+nmap <leader>, :action PreviousTab<CR>
+nmap <leader>. :action NextTab<CR>
+
+set splitbelow
+set splitright
+
+set ttyfast
+set re=1
+
+
+command W w
+command Wq wq
+command WQ wq
+command Q q
+
+
+
+
+
+
+
+
+

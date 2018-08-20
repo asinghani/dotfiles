@@ -1,0 +1,36 @@
+{
+  "title": "Capslock Enhancement",
+  "author": "a",
+  "homepage": "a",
+  "hostpage": "a",
+  "manual": "a",
+  "import_url": "karabiner://karabiner/assets/complex_modifications/import?url=null",
+  "rules": [
+    {
+      "description": "CapsLock to Control/Escape",
+      "manipulators": [
+        {
+          "from": {
+            "key_code": "caps_lock",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_control",
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "escape"
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    }
+  ]
+}

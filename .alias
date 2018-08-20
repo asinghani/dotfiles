@@ -1,0 +1,105 @@
+# Termimal Aliases & Functions
+
+# 1. Directory related commands
+# ------------------------------------
+cdl() { builtin cd "$@"; ll; }
+
+# Various options for moving forward/back in directories
+alias cd..="cd ../"
+alias ..="cd ../"
+alias ...="cd ../../"
+alias .1="cd ../"
+alias .2="cd ../../"
+alias .3="cd ../../../"
+alias .4="cd ../../../../"
+alias .5="cd ../../../../../"
+alias .6="cd ../../../../../../"
+
+# Useful ls presets
+alias la="ls -lah"
+alias ll="ls -lh"
+alias lal="la -lah"
+alias l="ls"
+alias sl="ls"
+
+# Other directory commands
+alias ~="cd ~"
+
+# ------------------------------------
+# 2. File management
+# ------------------------------------
+trash () { mkdir -p ~/.Trash; command mv "$@" ~/.Trash; }
+alias del="trash"
+
+extract () {
+    if [[ -f $1 ]] ; then
+        case $1 in
+            *.tar.bz2)   tar xjf $1     ;;
+            *.tar.gz)    tar xzf $1     ;;
+            *.bz2)       bunzip2 $1     ;;
+            *.rar)       unrar e $1     ;;
+            *.gz)        gunzip $1      ;;
+            *.tar)       tar xf $1      ;;
+            *.tbz2)      tar xjf $1     ;;
+            *.tgz)       tar xzf $1     ;;
+            *.zip)       unzip $1       ;;
+            *.Z)         uncompress $1  ;;
+            *.7z)        7z x $1        ;;
+            *)     echo "'$1' cannot be extracted" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+
+alias search="find. -name "
+qf () { /usr/bin/find . -name "$@" ; }
+alias quickfind="qf"
+alias qfind="qf"
+
+new () {
+	touch $1 && open $1
+}
+
+alias viminstall="vim +PluginInstall +qall"
+
+# ------------------------------------
+# 3. Development
+# ------------------------------------
+alias kall='kill %{1..105} 2&> /dev/null'
+
+# lazygit
+# https://github.com/jesseduffield/lazygit
+alias lg="lazygit"
+
+# tmux utf-8
+alias tmux="tmux -u"
+
+# ------------------------------------
+# 4. System Settings
+# ------------------------------------
+randMAC () {
+	openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'
+}
+
+changeMAC () {
+	echo "Original Address (save this):"
+	ifconfig en0 | grep ether
+	echo ""
+	sudo /System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport -z
+	sudo ifconfig en0 ether $1
+	networksetup -detectnewhardware
+	echo ""
+	echo "New Address:"
+	ifconfig en0 | grep ether
+}
+
+# ------------------------------------
+# 5. Misc
+# ------------------------------------
+
+viewmd() {
+    OUT_FILE=$(date | md5)
+    mdpdf $1 "/tmp/md_$OUT_FILE.pdf"
+    open "/tmp/md_$OUT_FILE.pdf"
+}

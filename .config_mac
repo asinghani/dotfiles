@@ -1,0 +1,11 @@
+# MacOS-specific config
+alias f='open -a Finder';
+alias finder='open -a Finder';
+
+ql () { qlmanage -p "$*" >& /dev/null; }
+alias quick='ql'
+alias quicklook='ql'
+alias look='ql'
+spotlight () { mdfind "kMDItemDisplayName == '$@'wc"; }
+
+alias lock='pmset sleepnow'
