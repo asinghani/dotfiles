@@ -245,7 +245,7 @@ hi SpellBad ctermbg=red guibg=red ctermfg=black guifg=black
 
 command Python :vertical terminal python % 
 set ttyfast
-set re=1
+silent! set re=1
 
 
 let g:table_mode_corner='|'
@@ -306,3 +306,7 @@ set fillchars=vert:│
 autocmd ColorScheme * highlight VertSplit cterm=NONE ctermfg=Green ctermbg=NONE
 
 :nnoremap <C-g> :buffers<CR>:buffer<Space>
+
+
+autocmd BufNewFile,BufRead *.md set filetype=markdown
+
