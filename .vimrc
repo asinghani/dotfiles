@@ -66,7 +66,7 @@ let g:pymode_rope = 0
 " set clipboard=unnamed
 let python_highlight_all=1
 
-let indentLine_char = ''
+let indentLine_char = ''
 
 set encoding=utf-8
 
