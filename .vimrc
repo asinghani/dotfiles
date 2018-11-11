@@ -35,7 +35,7 @@ Plugin 'rustushki/JavaImp.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'christoomey/rmvim.vim'
-Plugin 'tpope/vim-obsession'
+Plugin 'zxqfl/tabnine-vim'
 
 call vundle#end()
 
@@ -118,8 +118,8 @@ call submode#map('grow/shrink', 'n', 's', 'j', ':resize +1<CR>')
 let g:submode_timeout = 0
 let g:submode_keep_leaving_key = 1
 
-let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
-let g:SuperTabContextDefaultCompletionType = "<C-X><C-O>"
+"let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+"let g:SuperTabContextDefaultCompletionType = "<C-X><C-O>"
 
 "let g:jedi#use_splits_not_buffers = "bottom"
 let g:jedi#completions_command = "<C-G>"
