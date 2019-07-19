@@ -36,6 +36,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'christoomey/rmvim.vim'
 Plugin 'zxqfl/tabnine-vim'
+Plugin 'sheerun/vim-polyglot'
 
 call vundle#end()
 
