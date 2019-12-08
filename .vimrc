@@ -36,6 +36,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'christoomey/rmvim.vim'
 Plugin 'tpope/vim-obsession'
+Plugin 'zxqfl/tabnine-vim'
 
 call vundle#end()
 
@@ -66,7 +67,7 @@ let g:pymode_rope = 0
 " set clipboard=unnamed
 let python_highlight_all=1
 
-let indentLine_char = ''
+let indentLine_char = '|'
 
 set encoding=utf-8
 

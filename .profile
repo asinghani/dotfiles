@@ -15,6 +15,10 @@ if [ -f ~/.host-Anish-MBP ]; then
     source ~/.config_mac
 fi
 
+if [ -f ~/.host-Anish-Server ]; then
+    source ~/.Anish-Server
+fi
+
 
 # Git dotfile manager
 alias config='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'

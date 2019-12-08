@@ -1,0 +1,7 @@
+# Server-specific config
+
+alias local_diskspace="df -h | head -n 1 ; df -h | grep --color=never '/dev/sd\w*'"
+alias local_startvnc="sudo service lightdm start; /opt/TurboVNC/bin/vncserver;"
+alias local_gpuwatch="watch -n 0.25 nvidia-smi"
+
+export PATH="$PATH:/home/anish/.local/bin"
