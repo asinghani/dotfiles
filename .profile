@@ -17,8 +17,13 @@ fi
 
 if [ -f ~/.host-Anish-Server ]; then
     source ~/.Anish-Server
+    source ~/.config_linux
 fi
 
+if [ -f ~/.host-hawk ]; then
+    source ~/.hawk
+    source ~/.config_linux
+fi
 
 # Git dotfile manager
 alias config='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
