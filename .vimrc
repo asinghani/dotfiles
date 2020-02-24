@@ -20,7 +20,7 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'mattn/emmet-vim'
 Plugin 'kana/vim-submode' 
 "Plugin 'davidhalter/jedi-vim'
-Plugin 'ervandew/supertab'
+"Plugin 'ervandew/supertab'
 Plugin 'Siphalor/vim-atomified'
 Plugin 'phanviet/vim-monokai-pro'
 "Plugin 'w0rp/ale'
@@ -35,7 +35,7 @@ Plugin 'rustushki/JavaImp.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'christoomey/vim-tmux-navigator'
 "Plugin 'christoomey/rmvim.vim'
-Plugin 'zxqfl/tabnine-vim'
+"Plugin 'zxqfl/tabnine-vim'
 Plugin 'sheerun/vim-polyglot'
 
 call vundle#end()
@@ -63,6 +63,8 @@ highlight PmenuSel ctermbg=yellow guibg=yellow
 highlight LineNr term=bold cterm=NONE ctermfg=Gray ctermbg=NONE gui=NONE guifg=Gray guibg=NONE
 
 let g:pymode_rope = 0
+
+let g:syntastic_python_checkers=['flake8']
 
 " set clipboard=unnamed
 let python_highlight_all=1
