@@ -89,7 +89,6 @@ changeMAC () {
 	echo ""
 	sudo /System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport -z
 	sudo ifconfig en0 ether $1
-	networksetup -detectnewhardware
 	echo ""
 	echo "New Address:"
 	ifconfig en0 | grep ether
