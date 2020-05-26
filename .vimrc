@@ -37,6 +37,7 @@ Plugin 'christoomey/vim-tmux-navigator'
 "Plugin 'christoomey/rmvim.vim'
 "Plugin 'zxqfl/tabnine-vim'
 Plugin 'sheerun/vim-polyglot'
+Plugin 'altercation/vim-colors-solarized'
 
 call vundle#end()
 
@@ -49,9 +50,19 @@ set expandtab
 let g:indentLine_color_term = 241
 let g:indentLine_color_gui = '#626262'
 
-syntax on
-set background=dark
-colorscheme default
+" Handle color schemes
+if $ITERM_PROFILE == 'Light' || $LIGHT
+    let g:solarized_termcolors=256
+    syntax on
+    set background=light
+    colorscheme solarized
+else
+    syntax on
+    set background=dark
+    colorscheme default
+endif
+
+
 
 augroup PythonCustomization
   " highlight python self, when followed by a comma, a period or a parenth

@@ -61,6 +61,16 @@ new () {
 	touch $1 && open $1
 }
 
+# Run a command repeatedly
+run_repeat () {
+    while true
+    do
+        read -p "Press [ENTER] to run $1"
+        $@
+        printf "\n"
+    done
+}
+
 alias viminstall="vim +PluginInstall +qall"
 
 # ------------------------------------
