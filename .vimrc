@@ -35,7 +35,7 @@ Plugin 'rustushki/JavaImp.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'christoomey/vim-tmux-navigator'
 "Plugin 'christoomey/rmvim.vim'
-"Plugin 'zxqfl/tabnine-vim'
+Plugin 'zxqfl/tabnine-vim'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'altercation/vim-colors-solarized'
 
@@ -49,6 +49,8 @@ set expandtab
 
 let g:indentLine_color_term = 241
 let g:indentLine_color_gui = '#626262'
+
+set conceallevel=0
 
 " Handle color schemes
 if $ITERM_PROFILE == 'Light' || $LIGHT
