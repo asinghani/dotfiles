@@ -50,7 +50,6 @@ set expandtab
 let g:indentLine_color_term = 241
 let g:indentLine_color_gui = '#626262'
 
-set conceallevel=0
 
 " Handle color schemes
 if $ITERM_PROFILE == 'Light' || $LIGHT
@@ -327,4 +326,5 @@ autocmd ColorScheme * highlight VertSplit cterm=NONE ctermfg=Green ctermbg=NONE
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 autocmd BufNewFile,BufRead *.v set filetype=verilog syntax=verilog
 
-
+let g:vim_json_syntax_conceal = 0
+let g:vim_markdown_conceal = 0
