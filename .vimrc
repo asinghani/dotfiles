@@ -35,7 +35,9 @@ Plugin 'rustushki/JavaImp.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'christoomey/vim-tmux-navigator'
 "Plugin 'christoomey/rmvim.vim'
-"Plugin 'zxqfl/tabnine-vim'
+if $USE_TABNINE == "1"
+    Plugin 'zxqfl/tabnine-vim'
+endif
 Plugin 'sheerun/vim-polyglot'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'cmugpi/vim-c0'
