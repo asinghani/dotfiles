@@ -1,0 +1,19 @@
+br() {
+    if [ $# -eq 0 ]
+    then
+        cat /sys/class/backlight/intel_backlight/brightness
+    fi
+
+    if [ $# -eq 1 ]
+    then
+        echo $(( 390 * $1)) > /sys/class/backlight/intel_backlight/brightness 
+    fi 
+}
+
+brup() {
+    br $(( ($(br) / 390) + 1 ))
+}
+
+brdn() {
+    br $(( ($(br) / 390) - 1 ))
+}
