@@ -25,6 +25,11 @@ if [ -f ~/.host-inspiron ]; then
     source ~/.config_linux
 fi
 
+if [ -f ~/.host-CMU ]; then
+    source ~/.cmu
+    source ~/.config_linux
+fi
+
 # Git dotfile manager
 alias config='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 

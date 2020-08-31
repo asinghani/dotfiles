@@ -30,17 +30,22 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'isRuslan/vim-es6'
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'artur-shaik/vim-javacomplete2'
+"Plugin 'artur-shaik/vim-javacomplete2'
 Plugin 'rustushki/JavaImp.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'christoomey/vim-tmux-navigator'
 "Plugin 'christoomey/rmvim.vim'
-"Plugin 'zxqfl/tabnine-vim'
+if $USE_TABNINE == "1"
+    Plugin 'zxqfl/tabnine-vim'
+endif
 Plugin 'sheerun/vim-polyglot'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'cmugpi/vim-c0'
 
 call vundle#end()
 
 
+set autoindent
 filetype plugin indent on
 set tabstop=4
 set shiftwidth=4
@@ -49,9 +54,20 @@ set expandtab
 let g:indentLine_color_term = 241
 let g:indentLine_color_gui = '#626262'
 
-syntax on
-set background=dark
-colorscheme default
+
+" Handle color schemes
+if $ITERM_PROFILE == 'Light' || $LIGHT
+    let g:solarized_termcolors=256
+    syntax on
+    set background=light
+    colorscheme solarized
+else
+    syntax on
+    set background=dark
+    colorscheme default
+endif
+
+
 
 augroup PythonCustomization
   " highlight python self, when followed by a comma, a period or a parenth
@@ -87,7 +103,8 @@ nmap <leader>e :call NERDComment("n", "Toggle")<CR>
 
 let NERDTreeShowHidden=1
 
-set tags=./tags;,~/.vimtags
+set tags=~/.vimtags;,./tags
+
 let g:easytags_events = ['BufReadPost', 'BufWritePost']
 let g:easytags_async = 1
 let g:easytags_dynamic_files = 2
@@ -105,7 +122,6 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 nmap <leader>= <C-W>=
-
 
 call submode#enter_with('grow/shrink', 'n', 's', '<leader>l', ':vertical resize -1<CR>')
 call submode#enter_with('grow/shrink', 'n', 's', '<leader>h', ':vertical resize +1<CR>')
@@ -312,4 +328,7 @@ autocmd ColorScheme * highlight VertSplit cterm=NONE ctermfg=Green ctermbg=NONE
 
 
 autocmd BufNewFile,BufRead *.md set filetype=markdown
+autocmd BufNewFile,BufRead *.v set filetype=verilog syntax=verilog
 
+let g:vim_json_syntax_conceal = 0
+let g:vim_markdown_conceal = 0
