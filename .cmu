@@ -1,4 +1,4 @@
-export PATH=$HOME/software/tmux:$HOME/software/git:$PATH
+export PATH=$HOME/software/bin:$HOME/scripts:$HOME/software/tmux:$HOME/software/git:$PATH
 
 # cclub utilities
 export PATH=$PATH:/afs/club.cc.cmu.edu/contrib/bin
