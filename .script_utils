@@ -1,14 +1,25 @@
 #!/bin/bash
 
-bold=$(tty -s && tput bold)
-underline=$(tty -s && tput sgr 0 1)
-reset=$(tty -s && tput sgr0)
+bold=
+underline=
+reset=
+purple=
+red=
+green=
+tan=
+blue=
 
-purple=$(tty -s && tput setaf 171)
-red=$(tty -s && tput setaf 1)
-green=$(tty -s && tput setaf 76)
-tan=$(tty -s && tput setaf 3)
-blue=$(tty -s && tput setaf 38)
+if [[ $- == *i* ]]; then
+    bold=$(tty -s && tput bold)
+    underline=$(tty -s && tput sgr 0 1)
+    reset=$(tty -s && tput sgr0)
+
+    purple=$(tty -s && tput setaf 171)
+    red=$(tty -s && tput setaf 1)
+    green=$(tty -s && tput setaf 76)
+    tan=$(tty -s && tput setaf 3)
+    blue=$(tty -s && tput setaf 38)
+fi
 
 p_header() { printf "\n${bold}${purple}==========  %s  ==========${reset}\n" "$@";}
 p_arrow() { printf "➜ $*\n";}
