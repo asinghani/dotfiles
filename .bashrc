@@ -1,1 +1,1 @@
-/afs/andrew.cmu.edu/usr10/asinghan/.rc/.bashrc
+.rc/.bashrc
