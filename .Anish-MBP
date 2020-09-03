@@ -1,5 +1,5 @@
 # local config
-export PATH="/usr/bin/activator:/opt/local/bin:/opt/local/sbin:$PATH:/Users/anish/Library/Android/sdk/platform-tools:/Users/anish/Library/Android/sdk/tools:/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages:/usr/local/bin:/usr/local/miniconda3/miniconda3/bin:/Applications/Arduino.app/Contents/MacOS:/usr/local/pypy3/bin"
+export PATH="/usr/bin/activator:/opt/local/bin:/opt/local/sbin:$PATH:/Users/anish/Library/Android/sdk/platform-tools:/Users/anish/Library/Android/sdk/tools:/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages:/usr/local/bin:/usr/local/miniconda3/miniconda3/bin:/Applications/Arduino.app/Contents/MacOS:/usr/local/pypy3/bin:$HOME/software/sejda/bin"
 
 export SQL_HOME="/usr/local/mysql"
 export ROOT="/Users/anish/Anish/Programming"
