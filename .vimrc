@@ -160,6 +160,9 @@ nmap <leader>c :bd<CR>
 nmap <leader>, :bp<CR>
 nmap <leader>. :bn<CR>
 
+" disable syntastic
+command STM :SyntasticToggleMode
+
 nnoremap <Leader>1 :1b<CR>
 nnoremap <Leader>2 :2b<CR>
 nnoremap <Leader>3 :3b<CR>

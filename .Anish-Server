@@ -4,4 +4,8 @@ alias local_diskspace="df -h | head -n 1 ; df -h | grep --color=never '/dev/sd\w
 alias local_startvnc="sudo service lightdm start; /opt/TurboVNC/bin/vncserver;"
 alias local_gpuwatch="watch -n 0.25 nvidia-smi"
 
-export PATH="$PATH:/home/anish/.local/bin"
+export PATH="$PATH:/home/anish/.local/bin:/opt/riscv32i/bin"
+export OPENLANE_INSTALL_PATH="/home/anish/workspace/openlane/openlane"
+export OPENLANE_PDK_PATH="/home/anish/workspace/openlane/pdks"
+
+export QSYS_ROOTDIR="/home/anish/intelFPGA_lite/20.1/quartus/sopc_builder/bin"
