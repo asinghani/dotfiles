@@ -30,18 +30,22 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'isRuslan/vim-es6'
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'artur-shaik/vim-javacomplete2'
+"Plugin 'artur-shaik/vim-javacomplete2'
 Plugin 'rustushki/JavaImp.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'christoomey/vim-tmux-navigator'
 "Plugin 'christoomey/rmvim.vim'
-Plugin 'zxqfl/tabnine-vim'
+if $USE_TABNINE == "1"
+    Plugin 'zxqfl/tabnine-vim'
+endif
 Plugin 'sheerun/vim-polyglot'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'cmugpi/vim-c0'
 
 call vundle#end()
 
 
+set autoindent
 filetype plugin indent on
 set tabstop=4
 set shiftwidth=4
@@ -99,7 +103,8 @@ nmap <leader>e :call NERDComment("n", "Toggle")<CR>
 
 let NERDTreeShowHidden=1
 
-set tags=./tags;,~/.vimtags
+set tags=~/.vimtags;,./tags
+
 let g:easytags_events = ['BufReadPost', 'BufWritePost']
 let g:easytags_async = 1
 let g:easytags_dynamic_files = 2
@@ -117,7 +122,6 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 nmap <leader>= <C-W>=
-
 
 call submode#enter_with('grow/shrink', 'n', 's', '<leader>l', ':vertical resize -1<CR>')
 call submode#enter_with('grow/shrink', 'n', 's', '<leader>h', ':vertical resize +1<CR>')
