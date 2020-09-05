@@ -1,4 +1,10 @@
-export PATH=$HOME/software/bin:$HOME/scripts:$HOME/software/tmux:$HOME/software/git:$HOME/software/htop:$PATH
+
+export AFS_HOME=/afs/andrew.cmu.edu/usr10/asinghan
+export CCLUB_HOME=/afs/club.cc.cmu.edu/usr/asinghan
+
+export CMU_HOME=$AFS_HOME
+
+export PATH=$AFS_HOME/software/bin:$AFS_HOME/scripts:$AFS_HOME/software/tmux:$AFS_HOME/software/git:$AFS_HOME/software/htop:$PATH
 
 # cclub utilities
 export PATH=$PATH:/afs/club.cc.cmu.edu/contrib/bin
