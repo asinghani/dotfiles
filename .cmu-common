@@ -1,6 +1,7 @@
 aklog club.cc.cmu.edu
 aklog andrew.cmu.edu
 
+alias diskspace="fs lq -human"
 
 export AFS_HOME=/afs/andrew.cmu.edu/usr10/asinghan
 export CCLUB_HOME=/afs/club.cc.cmu.edu/usr/asinghan
