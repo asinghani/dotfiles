@@ -37,6 +37,9 @@ if [ -f ~/.host-cmu-cclub ]; then
     source ~/.config_linux
 fi
 
+# SSH config requires existence of directory
+mkdir -p ~/.ssh/sockets
+
 # Git dotfile manager
 alias config='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
