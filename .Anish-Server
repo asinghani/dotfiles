@@ -6,6 +6,6 @@ alias local_gpuwatch="watch -n 0.25 nvidia-smi"
 
 export PATH="$PATH:/home/anish/.local/bin:/opt/riscv32i/bin"
 export OPENLANE_INSTALL_PATH="/home/anish/workspace/openlane/openlane"
-export OPENLANE_PDK_PATH="/home/anish/workspace/openlane/pdks"
+export PDK_ROOT="/home/anish/workspace/openlane/pdks"
 
 export QSYS_ROOTDIR="/home/anish/intelFPGA_lite/20.1/quartus/sopc_builder/bin"
