@@ -1,0 +1,20 @@
+aklog club.cc.cmu.edu
+aklog andrew.cmu.edu
+
+alias diskspace="fs lq -human"
+
+export AFS_HOME=/afs/andrew.cmu.edu/usr10/asinghan
+export CCLUB_HOME=/afs/club.cc.cmu.edu/usr/asinghan
+
+export CMU_HOME=$AFS_HOME
+
+export PATH=$AFS_HOME/software/bin:$AFS_HOME/scripts:$AFS_HOME/software/tmux:$AFS_HOME/software/git:$AFS_HOME/software/htop:$PATH
+
+# cclub utilities
+export PATH=$PATH:/afs/club.cc.cmu.edu/contrib/bin
+export LD_LIBRARY_PATH=/afs/club.cc.cmu.edu/contrib/lib:$LD_LIBRARY_PATH
+
+# 15-122 stuff
+export PATH=/afs/andrew/course/15/122/bin:$PATH
+alias coin="rlwrap coin"
+alias clac-ref="rlwrap clac-ref"

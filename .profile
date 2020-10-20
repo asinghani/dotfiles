@@ -25,10 +25,20 @@ if [ -f ~/.host-inspiron ]; then
     source ~/.config_linux
 fi
 
-if [ -f ~/.host-CMU ]; then
-    source ~/.cmu
+if [ -f ~/.host-cmu-andrew ]; then
+    source ~/.cmu-common
+    source ~/.cmu-andrew
     source ~/.config_linux
 fi
+
+if [ -f ~/.host-cmu-cclub ]; then
+    source ~/.cmu-common
+    source ~/.cmu-cclub
+    source ~/.config_linux
+fi
+
+# SSH config requires existence of directory
+mkdir -p ~/.ssh/sockets
 
 # Git dotfile manager
 alias config='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
