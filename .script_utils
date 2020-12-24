@@ -67,3 +67,4 @@ is_mac() {
 
 alias succeed="p_success Succeeding...;"
 alias fail="p_error Failing...; intentionally_fail; "
+alias nocolor="sed 's/\x1b\[[0-9;]*m//g'"

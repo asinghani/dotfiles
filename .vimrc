@@ -40,7 +40,7 @@ if $USE_TABNINE == "1"
 endif
 Plugin 'sheerun/vim-polyglot'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'cmugpi/vim-c0'
+Plugin 'junegunn/fzf'
 
 call vundle#end()
 
