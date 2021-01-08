@@ -25,6 +25,11 @@ if [ -f ~/.host-inspiron ]; then
     source ~/.config_linux
 fi
 
+if [ -f ~/.host-Anish-Thinkpad ]; then
+    source ~/.Anish-Thinkpad
+    source ~/.config_linux
+fi
+
 if [ -f ~/.host-cmu-andrew ]; then
     source ~/.cmu-common
     source ~/.cmu-andrew
