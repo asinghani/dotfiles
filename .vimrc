@@ -32,7 +32,6 @@ Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'terryma/vim-multiple-cursors'
 "Plugin 'artur-shaik/vim-javacomplete2'
 Plugin 'rustushki/JavaImp.vim'
-Plugin 'scrooloose/syntastic'
 Plugin 'christoomey/vim-tmux-navigator'
 "Plugin 'christoomey/rmvim.vim'
 if $USE_TABNINE == "1"
