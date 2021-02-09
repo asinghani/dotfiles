@@ -9,6 +9,8 @@ source ~/.alias
 touch ~/.dotfiles_local
 source ~/.dotfiles_local
 
+source ~/.class_aliases
+
 # .host file must not be pushed to git
 if [ -f ~/.host-Anish-MBP ]; then
     source ~/.Anish-MBP
