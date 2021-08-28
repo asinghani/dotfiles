@@ -1,0 +1,6 @@
+
+# ECE-specific setup
+if [[ "$HOSTNAME" = *"ece"* ]]; then
+    source /afs/ece.cmu.edu/class/ee240/bin/setup_240
+    alias vcs="vcs -q -nc -debug -sverilog"
+fi
