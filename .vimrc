@@ -64,7 +64,7 @@ if $ITERM_PROFILE == 'Light' || $LIGHT
 else
     syntax on
     set background=dark
-    colorscheme default
+    colorscheme monokai_pro
 endif
 
 
