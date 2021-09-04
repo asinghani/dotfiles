@@ -41,6 +41,7 @@ endif
 Plugin 'sheerun/vim-polyglot'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'junegunn/fzf'
+Plugin 'nachumk/systemverilog.vim'
 
 call vundle#end()
 
@@ -64,7 +65,7 @@ if $ITERM_PROFILE == 'Light' || $LIGHT
 else
     syntax on
     set background=dark
-    colorscheme default
+    colorscheme monokai_pro
 endif
 
 
@@ -332,6 +333,9 @@ autocmd ColorScheme * highlight VertSplit cterm=NONE ctermfg=Green ctermbg=NONE
 
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 autocmd BufNewFile,BufRead *.v set filetype=verilog syntax=verilog
+autocmd BufNewFile,BufRead *.sv set filetype=verilog syntax=verilog
+autocmd BufNewFile,BufRead *.vh set filetype=verilog syntax=verilog
+autocmd BufNewFile,BufRead *.svh set filetype=verilog syntax=verilog
 
 let g:vim_json_syntax_conceal = 0
 let g:vim_markdown_conceal = 0
@@ -340,4 +344,4 @@ let g:indentLine_conceallevel = 0
 let g:indentLine_setConceal = 2
 let g:indentLine_concealcursor = ""
 
-
+colorscheme monokai_pro

@@ -1,0 +1,46 @@
+alias nya=cat
+
+if [[ "$HOSTNAME" = *"ece"* ]]; then
+    # EDA tools
+    # Setup 240 stuff
+    export PATH=$PATH:/afs/ece.cmu.edu/class/ece240/bin
+
+    # Setup Synopsys
+    export SYNOPSYS=/usr/local/synopsys
+    export LM_LICENSE_FILE=/afs/ece.cmu.edu/support/synopsys/license.dat:$LM_LICENSE_FILE
+
+    # Setup DC
+    export SYN_DIR=$SYNOPSYS/synopsys-2007.03-SP5
+    export DC_HOME=$SYN_DIR/linux/syn
+    export PATH=$PATH:$DC_HOME/bin
+    export MANPATH=$MANPATH:$SYN_DIR/doc/syn/man
+
+    # Setup VCS
+    export VCS_HOME=$SYNOPSYS/vcs-mx_vJ-2014.12
+    export PATH=$PATH:$VCS_HOME/bin
+    export VCS_ARCH_OVERRIDE=linux
+    export VCS_TARGET_ARCH=amd64
+    export VCS_MODE_FLAG=64
+    export MANPATH=$MANPATH:$VCS_HOME/doc/man
+    export VCS_LIC_EXPIRE_WARNING=0
+    alias vcs="vcs -q -nc -debug -sverilog"
+
+    # Setup QuartusII
+    export PATH=$PATH:/afs/ece/support/altera/release/12.1/quartus/bin
+    export QUARTUS_64BIT=1
+    export LM_LICENSE_FILE=5281@altera-lic.ece.cmu.edu:$LM_LICENSE_FILE
+
+    # Setup Vivado 2018.3
+    export PATH="/afs/ece/support/xilinx/xilinx.release/Vivado-2018.3/Vivado/2018.3/bin:$PATH"
+    export LM_LICENSE_FILE="2101@xilinx-lic.ece.cmu.edu:${LM_LICENSE_FILE}"
+
+    # 18-344 tools (pin/destiny/spec)
+    export PATH="/afs/ece.cmu.edu/class/ece344/opt/bin":$PATH 
+    export PIN_ROOT="/afs/ece.cmu.edu/class/ece344/opt/pin/inst"
+    export SPEC2017="/afs/ece.cmu.edu/class/ece344/opt/spec2017"
+    RC_OLDDIR="$(pwd)"
+    cd /afs/ece.cmu.edu/class/ece344/opt/spec2017
+    source ./shrc
+    cd "$RC_OLDDIR"
+fi
+
