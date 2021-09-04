@@ -9,6 +9,8 @@ source ~/.alias
 touch ~/.dotfiles_local
 source ~/.dotfiles_local
 
+source ~/.class_aliases
+
 # .host file must not be pushed to git
 if [ -f ~/.host-Anish-MBP ]; then
     source ~/.Anish-MBP
@@ -22,6 +24,11 @@ fi
 
 if [ -f ~/.host-inspiron ]; then
     source ~/.intel_laptop_linux
+    source ~/.config_linux
+fi
+
+if [ -f ~/.host-Anish-Thinkpad ]; then
+    source ~/.Anish-Thinkpad
     source ~/.config_linux
 fi
 

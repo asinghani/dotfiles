@@ -40,7 +40,7 @@ if $USE_TABNINE == "1"
 endif
 Plugin 'sheerun/vim-polyglot'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'cmugpi/vim-c0'
+Plugin 'junegunn/fzf'
 
 call vundle#end()
 
@@ -335,3 +335,9 @@ autocmd BufNewFile,BufRead *.v set filetype=verilog syntax=verilog
 
 let g:vim_json_syntax_conceal = 0
 let g:vim_markdown_conceal = 0
+
+let g:indentLine_conceallevel = 0
+let g:indentLine_setConceal = 2
+let g:indentLine_concealcursor = ""
+
+
