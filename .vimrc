@@ -40,6 +40,7 @@ endif
 Plugin 'sheerun/vim-polyglot'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'junegunn/fzf'
+Plugin 'kylelaker/riscv.vim'
 
 call vundle#end()
 
@@ -65,8 +66,6 @@ else
     set background=dark
     colorscheme default
 endif
-
-
 
 augroup PythonCustomization
   " highlight python self, when followed by a comma, a period or a parenth
@@ -121,6 +120,8 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 nmap <leader>= <C-W>=
+
+nmap <leader>f :FZF<CR>
 
 call submode#enter_with('grow/shrink', 'n', 's', '<leader>l', ':vertical resize -1<CR>')
 call submode#enter_with('grow/shrink', 'n', 's', '<leader>h', ':vertical resize +1<CR>')
