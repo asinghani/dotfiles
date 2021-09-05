@@ -38,6 +38,7 @@ if [[ "$HOSTNAME" = *"ece"* ]]; then
     export PATH="/afs/ece.cmu.edu/class/ece344/opt/bin":$PATH 
     export PIN_ROOT="/afs/ece.cmu.edu/class/ece344/opt/pin/inst"
     export SPEC2017="/afs/ece.cmu.edu/class/ece344/opt/spec2017"
+    export SPEC_CONFIG="/afs/ece.cmu.edu/class/ece344/opt/spec2017/config/18344-f21-asinghan.cfg"
     RC_OLDDIR="$(pwd)"
     cd /afs/ece.cmu.edu/class/ece344/opt/spec2017
     source ./shrc
