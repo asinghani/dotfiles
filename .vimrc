@@ -42,6 +42,7 @@ Plugin 'sheerun/vim-polyglot'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'junegunn/fzf'
 Plugin 'kylelaker/riscv.vim'
+Plugin 'nachumk/systemverilog.vim'
 
 call vundle#end()
 
@@ -65,7 +66,7 @@ if $ITERM_PROFILE == 'Light' || $LIGHT
 else
     syntax on
     set background=dark
-    colorscheme default
+    colorscheme monokai_pro
 endif
 
 
@@ -261,6 +262,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
+let g:airline_powerline_fonts = 0
 let g:airline#extensions#tabline#buffer_min_count = 2
 
 "let g:airline_section_a = '%#__accent_bold#%{airline#util#wrap(airline#parts#mode(),0)}%#__restore__#%{airline#util#append(airline#parts#crypt(),0)}%{airline#util#append(airline#parts#paste(),0)}%{airline#util#append(airline#extensions#keymap#status(),0)}%{airline#util#append(airline#parts#spell(),0)}%{airline#util#append("",0)}%{airline#util#append("",0)}%{airline#util#append(airline#parts#iminsert(),0)}'
@@ -334,6 +336,9 @@ autocmd ColorScheme * highlight VertSplit cterm=NONE ctermfg=Green ctermbg=NONE
 
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 autocmd BufNewFile,BufRead *.v set filetype=verilog syntax=verilog
+autocmd BufNewFile,BufRead *.sv set filetype=verilog syntax=verilog
+autocmd BufNewFile,BufRead *.vh set filetype=verilog syntax=verilog
+autocmd BufNewFile,BufRead *.svh set filetype=verilog syntax=verilog
 
 let g:vim_json_syntax_conceal = 0
 let g:vim_markdown_conceal = 0
@@ -341,6 +346,5 @@ let g:vim_markdown_conceal = 0
 let g:indentLine_conceallevel = 0
 let g:indentLine_setConceal = 2
 let g:indentLine_concealcursor = ""
-
 
 colorscheme monokai_pro
