@@ -25,6 +25,8 @@ alias sl="ls"
 # Other directory commands
 alias ~="cd ~"
 
+alias path="realpath"
+
 # ------------------------------------
 # 2. File management
 # ------------------------------------

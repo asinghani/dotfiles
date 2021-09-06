@@ -32,7 +32,7 @@ Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'terryma/vim-multiple-cursors'
 "Plugin 'artur-shaik/vim-javacomplete2'
 Plugin 'rustushki/JavaImp.vim'
-Plugin 'scrooloose/syntastic'
+"Plugin 'scrooloose/syntastic'
 Plugin 'christoomey/vim-tmux-navigator'
 "Plugin 'christoomey/rmvim.vim'
 if $USE_TABNINE == "1"
@@ -41,6 +41,7 @@ endif
 Plugin 'sheerun/vim-polyglot'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'junegunn/fzf'
+Plugin 'kylelaker/riscv.vim'
 
 call vundle#end()
 
@@ -122,6 +123,8 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 nmap <leader>= <C-W>=
+
+nmap <leader>f :FZF<CR>
 
 call submode#enter_with('grow/shrink', 'n', 's', '<leader>l', ':vertical resize -1<CR>')
 call submode#enter_with('grow/shrink', 'n', 's', '<leader>h', ':vertical resize +1<CR>')
@@ -258,7 +261,6 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
-let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#buffer_min_count = 2
 
 "let g:airline_section_a = '%#__accent_bold#%{airline#util#wrap(airline#parts#mode(),0)}%#__restore__#%{airline#util#append(airline#parts#crypt(),0)}%{airline#util#append(airline#parts#paste(),0)}%{airline#util#append(airline#extensions#keymap#status(),0)}%{airline#util#append(airline#parts#spell(),0)}%{airline#util#append("",0)}%{airline#util#append("",0)}%{airline#util#append(airline#parts#iminsert(),0)}'
@@ -341,3 +343,4 @@ let g:indentLine_setConceal = 2
 let g:indentLine_concealcursor = ""
 
 
+colorscheme monokai_pro
