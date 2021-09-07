@@ -1,31 +1,31 @@
-#/usr/bin/setxkbmap -option caps:escape
 /usr/bin/xbindkeys -p
 
 alias gpuwatch="watch -n 0.25 nvidia-smi"
-export PATH="/home/anish/workspace/bin:$PATH:/home/anish/.local/bin:/home/anish/.cargo/bin"
-
-export MAKEFLAGS="-j$(expr $(nproc) \+ 1)"
 
 # CUDA
 export LD_LIBRARY_PATH="/usr/lib/cuda/lib64:$LD_LIBRARY_PATH"
 export LD_LIBRARY_PATH="/usr/lib/cuda/include:$LD_LIBRARY_PATH"
 
-function backlight-notif() {
-    echo "-r $(notify-send.py "brightness-notif" $(cat /tmp/backlight-notif) -i /usr/share/icons/elementary-xfce-dark/panel/48/xfpm-brightness-lcd.png --hint int:value:$(xbacklight | cut -d. -f1) string:synchronous:brightness)" > /tmp/backlight-notif
-}
-
-function backlight-up() {
-    xbacklight + 7.5
-    backlight-notif
-}
-
-function backlight-down() {
-    xbacklight - 7.5
-    backlight-notif
-}
-
+# Node.js
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# Quartus
 export QSYS_ROOTDIR="/opt/Intel/quartus/sopc_builder/bin"
+
+# Local vars
+export PATH="/home/anish/workspace/bin:$PATH:/home/anish/.local/bin:/home/anish/.cargo/bin:/home/anish/workspace/xpack-riscv-none-embed-gcc-10.1.0-1.1/bin:/home/anish/workspace/selenium"
+export MAKEFLAGS="-j16"
+
+# ESP-IDF
+alias get_idf="source ~/workspace/esp/esp-idf/export.sh"
+
+spot() {
+    tmux new-session -d -s spotify -n 0 || return
+    tmux send-keys -t spotify:0 "cd ~/workspace/scripts" Enter
+    tmux send-keys -t spotify:0 "python3 spotify_skipper_linux.py" Enter
+}
+
+. "$HOME/.cargo/env"
+export PATH=$PATH:/opt/riscv32i/bin

@@ -9,3 +9,6 @@ alias look='ql'
 spotlight () { mdfind "kMDItemDisplayName == '$@'wc"; }
 
 alias lock='pmset sleepnow'
+
+bundleid () { lsappinfo info -only bundleid $1 | cut -d '"' -f4; }
+#duti -s $(bundleid "$1") $2 all

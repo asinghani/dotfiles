@@ -32,7 +32,6 @@ Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'terryma/vim-multiple-cursors'
 "Plugin 'artur-shaik/vim-javacomplete2'
 Plugin 'rustushki/JavaImp.vim'
-Plugin 'scrooloose/syntastic'
 Plugin 'christoomey/vim-tmux-navigator'
 "Plugin 'christoomey/rmvim.vim'
 if $USE_TABNINE == "1"
@@ -41,6 +40,7 @@ endif
 Plugin 'sheerun/vim-polyglot'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'junegunn/fzf'
+Plugin 'kylelaker/riscv.vim'
 Plugin 'nachumk/systemverilog.vim'
 
 call vundle#end()
@@ -67,8 +67,6 @@ else
     set background=dark
     colorscheme monokai_pro
 endif
-
-
 
 augroup PythonCustomization
   " highlight python self, when followed by a comma, a period or a parenth
@@ -123,6 +121,8 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 nmap <leader>= <C-W>=
+
+nmap <leader>f :FZF<CR>
 
 call submode#enter_with('grow/shrink', 'n', 's', '<leader>l', ':vertical resize -1<CR>')
 call submode#enter_with('grow/shrink', 'n', 's', '<leader>h', ':vertical resize +1<CR>')
