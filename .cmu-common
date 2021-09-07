@@ -1,5 +1,6 @@
 aklog club.cc.cmu.edu
 aklog andrew.cmu.edu
+aklog ece.cmu.edu
 
 alias diskspace="fs lq -human"
 
