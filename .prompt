@@ -133,9 +133,9 @@ prompt () {
     #printf "${timer_show}"
     if [[ $EUID -ne 0 ]]; then
     	if [ $lastStatus -eq 0 ]; then
-    		printf "${Green}❯ ${Reset}";
+    		printf "${Green}\$ ${Reset}";
     	else
-    		printf "${Red}❯ ${Reset}";
+    		printf "${Red}\$ ${Reset}";
     	fi;
     else
         printf "# ";
