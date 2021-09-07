@@ -1,1 +1,1 @@
-.rc/.bashrc
+source ~/.profile
