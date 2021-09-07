@@ -1,0 +1,2 @@
+# Keyboard caps -> escape
+tset -q && setxkbmap -option caps:escape
