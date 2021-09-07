@@ -1,5 +1,31 @@
-alias gpuwatch="watch -n 0.25 nvidia-smi"
-export PATH="$PATH:/home/anish/.local/bin"
+#/usr/bin/setxkbmap -option caps:escape
+/usr/bin/xbindkeys -p
 
-alias python3="python3.8"
-alias pip3="pip3.8"
+alias gpuwatch="watch -n 0.25 nvidia-smi"
+export PATH="/home/anish/workspace/bin:$PATH:/home/anish/.local/bin:/home/anish/.cargo/bin"
+
+export MAKEFLAGS="-j$(expr $(nproc) \+ 1)"
+
+# CUDA
+export LD_LIBRARY_PATH="/usr/lib/cuda/lib64:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="/usr/lib/cuda/include:$LD_LIBRARY_PATH"
+
+function backlight-notif() {
+    echo "-r $(notify-send.py "brightness-notif" $(cat /tmp/backlight-notif) -i /usr/share/icons/elementary-xfce-dark/panel/48/xfpm-brightness-lcd.png --hint int:value:$(xbacklight | cut -d. -f1) string:synchronous:brightness)" > /tmp/backlight-notif
+}
+
+function backlight-up() {
+    xbacklight + 7.5
+    backlight-notif
+}
+
+function backlight-down() {
+    xbacklight - 7.5
+    backlight-notif
+}
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export QSYS_ROOTDIR="/opt/Intel/quartus/sopc_builder/bin"
