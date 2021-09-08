@@ -20,3 +20,6 @@ export LD_LIBRARY_PATH=/afs/club.cc.cmu.edu/contrib/lib:$LD_LIBRARY_PATH
 export PATH=/afs/andrew/course/15/122/bin:$PATH
 alias coin="rlwrap coin"
 alias clac-ref="rlwrap clac-ref"
+
+# Class homes
+export ECE344="/afs/ece.cmu.edu/class/ece344"
