@@ -6,57 +6,58 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 
-" Other Plugins
+" List of plugins
 
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-
-Plugin 'scrooloose/nerdtree'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-easytags'
-Plugin 'majutsushi/tagbar'
-
-Plugin 'Raimondi/delimitMate'
-Plugin 'mattn/emmet-vim'
-Plugin 'kana/vim-submode' 
-"Plugin 'davidhalter/jedi-vim'
-"Plugin 'ervandew/supertab'
-Plugin 'Siphalor/vim-atomified'
-Plugin 'phanviet/vim-monokai-pro'
-"Plugin 'w0rp/ale'
-Plugin 'jeetsukumaran/vim-pythonsense'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'Yggdroot/indentLine'
-Plugin 'isRuslan/vim-es6'
-Plugin 'dhruvasagar/vim-table-mode'
-Plugin 'terryma/vim-multiple-cursors'
-"Plugin 'artur-shaik/vim-javacomplete2'
-Plugin 'rustushki/JavaImp.vim'
-Plugin 'christoomey/vim-tmux-navigator'
-"Plugin 'christoomey/rmvim.vim'
 if $USE_TABNINE == "1"
     Plugin 'zxqfl/tabnine-vim'
 endif
-Plugin 'sheerun/vim-polyglot'
-Plugin 'altercation/vim-colors-solarized'
+
+" Fundamental
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'xolox/vim-misc'
+Plugin 'kana/vim-submode' 
+
+" File-related
 Plugin 'junegunn/fzf'
+Plugin 'scrooloose/nerdtree'
+
+" Text-editing
+Plugin 'Raimondi/delimitMate'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'Yggdroot/indentLine'
+
+" Language support
+Plugin 'sheerun/vim-polyglot'
+Plugin 'jeetsukumaran/vim-pythonsense'
 Plugin 'kylelaker/riscv.vim'
 Plugin 'nachumk/systemverilog.vim'
+
+" Colors
+Plugin 'phanviet/vim-monokai-pro'
+Plugin 'altercation/vim-colors-solarized'
+
+" Potentially useful plugins in the future
+"Plugin 'xolox/vim-easytags'
+"Plugin 'mattn/emmet-vim'
+"Plugin 'majutsushi/tagbar'
+"Plugin 'davidhalter/jedi-vim'
+"Plugin 'ervandew/supertab'
+"Plugin 'w0rp/ale'
+"Plugin 'isRuslan/vim-es6'
+"Plugin 'dhruvasagar/vim-table-mode'
+"Plugin 'terryma/vim-multiple-cursors'
+"Plugin 'artur-shaik/vim-javacomplete2'
+"Plugin 'rustushki/JavaImp.vim'
+"Plugin 'christoomey/vim-tmux-navigator'
+"Plugin 'christoomey/rmvim.vim'
+
 
 call vundle#end()
 
 
-set autoindent
-filetype plugin indent on
-set tabstop=4
-set shiftwidth=4
-set expandtab
 
-let g:indentLine_color_term = 241
-let g:indentLine_color_gui = '#626262'
-
-
-" Handle color schemes
+" Automatically set color scheme based on term config
 if $ITERM_PROFILE == 'Light' || $LIGHT
     let g:solarized_termcolors=256
     syntax on
@@ -68,106 +69,63 @@ else
     colorscheme monokai_pro
 endif
 
-augroup PythonCustomization
-  " highlight python self, when followed by a comma, a period or a parenth
-   :autocmd FileType python syn match pythonExceptions "\(\W\|^\)\@<=self\([\.,)]\)\@="
-augroup END
 
-highlight Pmenu ctermbg=gray guibg=gray
-highlight PmenuSel ctermbg=yellow guibg=yellow
-highlight LineNr term=bold cterm=NONE ctermfg=Gray ctermbg=NONE gui=NONE guifg=Gray guibg=NONE
 
-let g:pymode_rope = 0
-
-let g:syntastic_python_checkers=['flake8']
-
-" set clipboard=unnamed
-let python_highlight_all=1
-
-let indentLine_char = '|'
-
+" Generic display and text-editing config
+set autoindent
+filetype plugin indent on
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set splitbelow
+set splitright
 set encoding=utf-8
-
 set mouse=a
 set ruler
 set ic
-
-set number 
-
-let g:syntastic_html_checkers = []
-
-let mapleader = ';'
-
-nmap <leader>e :call NERDComment("n", "Toggle")<CR>
-
-let NERDTreeShowHidden=1
-
-set tags=~/.vimtags;,./tags
-
-let g:easytags_events = ['BufReadPost', 'BufWritePost']
-let g:easytags_async = 1
-let g:easytags_dynamic_files = 2
-let g:easytags_resolve_links = 1
-let g:easytags_suppress_ctags_warning = 1
-
-map <C-V> :NERDTreeToggle<CR>
-map <C-B> :TagbarToggle<CR>
-
-nmap <silent> <leader>b :TagbarToggle<CR>:
-"#autocmd BufEnter * nested :call tagbar#autoopen(0)
-
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-nmap <leader>= <C-W>=
-
-nmap <leader>f :FZF<CR>
-
-call submode#enter_with('grow/shrink', 'n', 's', '<leader>l', ':vertical resize -1<CR>')
-call submode#enter_with('grow/shrink', 'n', 's', '<leader>h', ':vertical resize +1<CR>')
-call submode#map('grow/shrink', 'n', 's', 'l', ':vertical resize -1<CR>')
-call submode#map('grow/shrink', 'n', 's', 'h', ':vertical resize +1<CR>')
-
-
-call submode#enter_with('grow/shrink', 'n', 's', '<leader>k', ':resize -1<CR>')
-call submode#enter_with('grow/shrink', 'n', 's', '<leader>j', ':resize +1<CR>')
-call submode#map('grow/shrink', 'n', 's', 'k', ':resize -1<CR>')
-call submode#map('grow/shrink', 'n', 's', 'j', ':resize +1<CR>')
-
-let g:submode_timeout = 0
-let g:submode_keep_leaving_key = 1
-
-"let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
-"let g:SuperTabContextDefaultCompletionType = "<C-X><C-O>"
-
-"let g:jedi#use_splits_not_buffers = "bottom"
-let g:jedi#completions_command = "<C-G>"
-"#let g:jedi#documentation_command = "<C-K>"
-
-let g:jedi#popup_on_dot = 0
-
+set number
 set backspace=2
+set timeoutlen=1000 ttimeoutlen=0
+set ttyfast
+silent! set re=1
 
-"nnoremap <silent> <Leader>l :vertical resize -1<CR>
-"nnoremap <silent> <Leader>h :vertical resize +1<CR>
-"nnoremap <silent> <Leader>k :resize +1<CR>
-"nnoremap <silent> <Leader>j :resize -1<CR>
-
-let user_emmet_expandabbr_key = '<C-G>'
-let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
-
-
-
+" Builtin command remappings
+let mapleader = ';'
+command W w
+command Wq wq
+command WQ wq
+command Q q
 
 nmap <leader>c :bd<CR>
 nmap <leader>, :bp<CR>
 nmap <leader>. :bn<CR>
 
-" disable syntastic
+" Other mappings
+
+" Movement between panes
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Resizing of panes
+nmap <leader>= <C-W>=
+call submode#enter_with('grow/shrink', 'n', 's', '<leader>l', ':vertical resize -1<CR>')
+call submode#enter_with('grow/shrink', 'n', 's', '<leader>h', ':vertical resize +1<CR>')
+call submode#map('grow/shrink', 'n', 's', 'l', ':vertical resize -1<CR>')
+call submode#map('grow/shrink', 'n', 's', 'h', ':vertical resize +1<CR>')
+call submode#enter_with('grow/shrink', 'n', 's', '<leader>k', ':resize -1<CR>')
+call submode#enter_with('grow/shrink', 'n', 's', '<leader>j', ':resize +1<CR>')
+call submode#map('grow/shrink', 'n', 's', 'k', ':resize -1<CR>')
+call submode#map('grow/shrink', 'n', 's', 'j', ':resize +1<CR>')
+let g:submode_timeout = 0
+let g:submode_keep_leaving_key = 1
+
+
+"  syntastic
 command STM :SyntasticToggleMode
 
+" Switch between bufs faster
 nnoremap <Leader>1 :1b<CR>
 nnoremap <Leader>2 :2b<CR>
 nnoremap <Leader>3 :3b<CR>
@@ -187,20 +145,107 @@ endwhile
 
 
 
-set splitbelow
-set splitright
+" Syntax-highlighting things
 
-command! -nargs=1 Silent
-            \   execute 'silent !' . <q-args>
-            \ | execute 'redraw!'
+" highlight python 'self', when followed by a comma, a period or a parenth
+augroup PythonCustomization
+   :autocmd FileType python syn match pythonExceptions "\(\W\|^\)\@<=self\([\.,)]\)\@="
+augroup END
 
-command P Silent sp p
-command Play Silent sp play
-command Pause Silent sp pause
-command S Silent sp n
-command Skip Silent sp next
+highlight Pmenu ctermbg=gray guibg=gray
+highlight PmenuSel ctermbg=yellow guibg=yellow
+highlight LineNr term=bold cterm=NONE ctermfg=Gray ctermbg=NONE gui=NONE guifg=Gray guibg=NONE
+hi SpellBad ctermbg=red guibg=red ctermfg=black guifg=black
+autocmd ColorScheme * highlight VertSplit cterm=NONE ctermfg=Green ctermbg=NONE
+
+" File-specific syntax config
+autocmd BufNewFile,BufRead *.md set filetype=markdown
+autocmd BufNewFile,BufRead *.v set filetype=verilog syntax=verilog
+autocmd BufNewFile,BufRead *.sv set filetype=verilog syntax=verilog
+autocmd BufNewFile,BufRead *.vh set filetype=verilog syntax=verilog
+autocmd BufNewFile,BufRead *.svh set filetype=verilog syntax=verilog
+
+" Avoid conceal issues with markdown/json
+let g:vim_json_syntax_conceal = 0
+let g:vim_markdown_conceal = 0
+let g:indentLine_conceallevel = 0
+let g:indentLine_setConceal = 2
+let g:indentLine_concealcursor = ""
 
 
+
+" Execution configs (mildly useful)
+command Python :vertical terminal python3 %
+command Python3 :vertical terminal python3 % 
+
+
+" Other misc syntax-related fixing
+let g:pymode_rope = 0
+let g:syntastic_python_checkers=['flake8']
+let python_highlight_all=1
+let g:syntastic_html_checkers = []
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+
+let g:indentLine_color_term = 241
+let g:indentLine_color_gui = '#626262'
+let indentLine_char = '|'
+
+" File browsing/access
+let NERDTreeShowHidden=1
+map <C-B> :NERDTreeToggle<CR>
+nmap <leader>f :FZF<CR>
+
+" Useful text editing thingies
+nmap <leader>e :call NERDComment("n", "Toggle")<CR>
+noremap x "_x
+vnoremap p "_dP
+nnoremap <Space> @q
+
+" Better seperator character
+set fillchars=vert:│
+:nnoremap <C-g> :buffers<CR>:buffer<Space>
+
+
+""" Unused, possibly useful in the future
+
+" Emmet (faster HTML)
+"let user_emmet_expandabbr_key = '<C-G>'
+"let g:user_emmet_install_global = 0
+"autocmd FileType html,css EmmetInstall
+
+" Tags
+"set tags=~/.vimtags
+"let g:easytags_events = ['BufReadPost', 'BufWritePost']
+"let g:easytags_async = 1
+"let g:easytags_dynamic_files = 2
+"let g:easytags_resolve_links = 1
+"let g:easytags_suppress_ctags_warning = 1
+
+" Table mode
+"let g:table_mode_corner='|'
+"
+"function! s:isAtStartOfLine(mapping)
+"  let text_before_cursor = getline('.')[0 : col('.')-1]
+"  let mapping_pattern = '\V' . escape(a:mapping, '\')
+"  let comment_pattern = '\V' . escape(substitute(&l:commentstring, '%s.*$', '', ''), '\')
+"  return (text_before_cursor =~? '^' . ('\v(' . comment_pattern . '\v)?') . '\s*\v' . mapping_pattern . '\v$')
+"endfunction
+"
+"inoreabbrev <expr> <bar><bar>
+"          \ <SID>isAtStartOfLine('\|\|') ?
+"          \ '<c-o>:TableModeEnable<cr><bar><space><bar><left><left>' : '<bar><bar>'
+"inoreabbrev <expr> __
+"          \ <SID>isAtStartOfLine('__') ?
+"          \ '<c-o>:silent! TableModeDisable<cr>' : '__'
+
+
+
+" Status bar config
 func! s:strfind(s,find,start)
         if type(a:find)==1
                 let l:i = a:start
@@ -252,8 +297,6 @@ func! s:strreplace(s,find,replace)
 
 endfunc
 
-" s:strreplace("abc",["a","b"],["b","a"])
-
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
@@ -263,85 +306,3 @@ let g:airline_powerline_fonts = 0
 let g:airline#extensions#tabline#buffer_min_count = 2
 
 "let g:airline_section_a = '%#__accent_bold#%{airline#util#wrap(airline#parts#mode(),0)}%#__restore__#%{airline#util#append(airline#parts#crypt(),0)}%{airline#util#append(airline#parts#paste(),0)}%{airline#util#append(airline#extensions#keymap#status(),0)}%{airline#util#append(airline#parts#spell(),0)}%{airline#util#append("",0)}%{airline#util#append("",0)}%{airline#util#append(airline#parts#iminsert(),0)}'
-
-hi SpellBad ctermbg=red guibg=red ctermfg=black guifg=black
-
-command Python :vertical terminal python % 
-set ttyfast
-silent! set re=1
-
-
-let g:table_mode_corner='|'
-
-function! s:isAtStartOfLine(mapping)
-  let text_before_cursor = getline('.')[0 : col('.')-1]
-  let mapping_pattern = '\V' . escape(a:mapping, '\')
-  let comment_pattern = '\V' . escape(substitute(&l:commentstring, '%s.*$', '', ''), '\')
-  return (text_before_cursor =~? '^' . ('\v(' . comment_pattern . '\v)?') . '\s*\v' . mapping_pattern . '\v$')
-endfunction
-
-inoreabbrev <expr> <bar><bar>
-          \ <SID>isAtStartOfLine('\|\|') ?
-          \ '<c-o>:TableModeEnable<cr><bar><space><bar><left><left>' : '<bar><bar>'
-inoreabbrev <expr> __
-          \ <SID>isAtStartOfLine('__') ?
-          \ '<c-o>:silent! TableModeDisable<cr>' : '__'
-
-
-
-
-command W w
-command Wq wq
-command WQ wq
-command Q q
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-autocmd Filetype java setlocal omnifunc=javacomplete#Complete 
-setlocal completefunc=javacomplete#CompleteParamsInfo 
-
-nmap <leader>ji <Plug>(JavaComplete-Imports-Add)
-
-" set timeout " Do time out on mappings and others
-" set ttimeoutlen=0
-" set timeoutlen=2000 " Wait {num} ms before timing out a mapping
-
-"if !has('gui_running')
-"    set ttimeoutlen=10
-"    augroup FastEscape
-"        autocmd!
-"        au InsertEnter * set timeoutlen=0
-"        au InsertLeave * set timeoutlen=1000
-"    augroup END
-"endif
-
-set timeoutlen=1000 ttimeoutlen=0
-
-noremap x "_x
-vnoremap p "_dP
-nnoremap <Space> @q
-
-" Better seperator character
-set fillchars=vert:│
-autocmd ColorScheme * highlight VertSplit cterm=NONE ctermfg=Green ctermbg=NONE
-
-:nnoremap <C-g> :buffers<CR>:buffer<Space>
-
-
-autocmd BufNewFile,BufRead *.md set filetype=markdown
-autocmd BufNewFile,BufRead *.v set filetype=verilog syntax=verilog
-autocmd BufNewFile,BufRead *.sv set filetype=verilog syntax=verilog
-autocmd BufNewFile,BufRead *.vh set filetype=verilog syntax=verilog
-autocmd BufNewFile,BufRead *.svh set filetype=verilog syntax=verilog
-
-let g:vim_json_syntax_conceal = 0
-let g:vim_markdown_conceal = 0
-
-let g:indentLine_conceallevel = 0
-let g:indentLine_setConceal = 2
-let g:indentLine_concealcursor = ""
-
-colorscheme monokai_pro
