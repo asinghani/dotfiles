@@ -5,3 +5,6 @@ if [[ "$HOSTNAME" = *"ece"* ]]; then
     source ~/.cmu-ece
 fi
 
+case $HOSTNAME in 
+    apollo.andrew.local.cmu.edu|ares.andrew.local.cmu.edu|artemis.andrew.local.cmu.edu|cronus.andrew.local.cmu.edu|demeter.andrew.local.cmu.edu|erida.andrew.local.cmu.edu|erinyes.andrew.local.cmu.edu|eris.andrew.local.cmu.edu|fates.andrew.local.cmu.edu|gorgons.andrew.local.cmu.edu|graces.andrew.local.cmu.edu|hades.andrew.local.cmu.edu|hebe.andrew.local.cmu.edu|helios.andrew.local.cmu.edu|hermes.andrew.local.cmu.edu|hestia.andrew.local.cmu.edu|leto.andrew.local.cmu.edu|nemesis.andrew.local.cmu.edu|oceanus.andrew.local.cmu.edu|themis.andrew.local.cmu.edu) source ~/.cmu-ece; source ~/.cmu-gui; echo "ECE GUI" ;;
+esac
