@@ -95,17 +95,6 @@ randMAC () {
 	openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'
 }
 
-changeMAC () {
-	echo "Original Address (save this):"
-	ifconfig en0 | grep ether
-	echo ""
-	sudo /System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport -z
-	sudo ifconfig en0 ether $1
-	echo ""
-	echo "New Address:"
-	ifconfig en0 | grep ether
-}
-
 # ------------------------------------
 # 5. Misc
 # ------------------------------------

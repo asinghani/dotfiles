@@ -1,10 +1,2 @@
-# linux config
-
+# Linux config
 alias open="xdg-open"
-
-if [[ $- == *i* ]]; then
-    stty werase undef
-    bind -r "\C-t"
-    bind -r "\C-w"
-    for i in "-" {0..9}; do bind -r "\e$i"; done
-fi

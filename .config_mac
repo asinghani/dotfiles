@@ -11,4 +11,14 @@ spotlight () { mdfind "kMDItemDisplayName == '$@'wc"; }
 alias lock='pmset sleepnow'
 
 bundleid () { lsappinfo info -only bundleid $1 | cut -d '"' -f4; }
-#duti -s $(bundleid "$1") $2 all
+
+changeMAC () {
+	echo "Original Address (save this):"
+	ifconfig en0 | grep ether
+	echo ""
+	sudo /System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport -z
+	sudo ifconfig en0 ether $1
+	echo ""
+	echo "New Address:"
+	ifconfig en0 | grep ether
+}

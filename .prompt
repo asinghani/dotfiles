@@ -30,6 +30,7 @@ successFail () {
 printHostname () {
     printf "${BGreen}$(whoami)@$(hostname -s)${Reset}"; 
 }
+
 getDir() {
     dir=$(pwd);
     replace="~";
