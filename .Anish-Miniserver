@@ -1,0 +1,2 @@
+export PATH="$PATH:/home/anish/workspace/geckodriver-0.29.1/target/release"
+export PATH="$PATH:/home/anish/projects/cmu-room-finder"

@@ -19,6 +19,11 @@ if [ -f ~/.host-Anish-Thinkpad ]; then
     source ~/.config_linux
 fi
 
+if [ -f ~/.host-Anish-Miniserver ]; then
+    source ~/.Anish-Miniserver
+    source ~/.config_linux
+fi
+
 if [ -f ~/.host-cmu-andrew ]; then
     source ~/.cmu-common
     source ~/.cmu-andrew
