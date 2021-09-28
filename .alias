@@ -138,3 +138,21 @@ fromafs() {
         scp $AFS_USER@$AFS_MACHINE:$1 $2
     fi
 }
+
+# 14-741 / 18-631
+741-browser() {
+	chromium --proxy-server="socks://localhost:8123" "http://192.168.2.82/problems"
+}
+
+741-pwntools() {
+	echo 'context.proxy = (socks.SOCKS5, "localhost", 8123)'
+}
+
+741-tunnel() {
+	echo "Starting tunnel..."
+	sshpass -f $HOME/.741-password ssh -D 8123 -C -q -N -o ControlPersist=no tunneler@ctf.ini.cmu.edu
+}
+
+741-shell() {
+	ssh -o ProxyCommand='nc -x localhost:8123 %h %p' asinghan14741@192.168.2.83
+}
