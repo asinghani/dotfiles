@@ -190,10 +190,11 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-
+" Indent line and gutter
 let g:indentLine_color_term = 241
 let g:indentLine_color_gui = '#626262'
 let indentLine_char = '|'
+set colorcolumn=80
 
 " File browsing/access
 let NERDTreeShowHidden=1
@@ -209,6 +210,7 @@ nnoremap <Space> @q
 " Better seperator character
 set fillchars=vert:│
 :nnoremap <C-g> :buffers<CR>:buffer<Space>
+
 
 
 """ Unused, possibly useful in the future
