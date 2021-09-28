@@ -1,6 +1,8 @@
 set nocompatible
 filetype off
 
+runtime macros/matchit.vim
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -28,10 +30,11 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'Yggdroot/indentLine'
 
 " Language support
+Plugin 'geoffharcourt/vim-matchit'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'jeetsukumaran/vim-pythonsense'
 Plugin 'kylelaker/riscv.vim'
-Plugin 'nachumk/systemverilog.vim'
+Plugin 'vhda/verilog_systemverilog.vim'
 
 " Colors
 Plugin 'phanviet/vim-monokai-pro'
@@ -160,10 +163,6 @@ autocmd ColorScheme * highlight VertSplit cterm=NONE ctermfg=Green ctermbg=NONE
 
 " File-specific syntax config
 autocmd BufNewFile,BufRead *.md set filetype=markdown
-autocmd BufNewFile,BufRead *.v set filetype=verilog syntax=verilog
-autocmd BufNewFile,BufRead *.sv set filetype=verilog syntax=verilog
-autocmd BufNewFile,BufRead *.vh set filetype=verilog syntax=verilog
-autocmd BufNewFile,BufRead *.svh set filetype=verilog syntax=verilog
 
 " Avoid conceal issues with markdown/json
 let g:vim_json_syntax_conceal = 0
