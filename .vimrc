@@ -177,6 +177,9 @@ let g:indentLine_concealcursor = ""
 command Python :vertical terminal python3 %
 command Python3 :vertical terminal python3 % 
 
+" Very experimental Yosys execution
+command Ys !yosys -qp "read_verilog -sv %; synth_ice40 -flatten; tee -o /dev/stdout stat"
+
 
 " Other misc syntax-related fixing
 let g:pymode_rope = 0
