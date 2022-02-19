@@ -196,7 +196,7 @@ let g:syntastic_check_on_wq = 0
 let g:indentLine_color_term = 241
 let g:indentLine_color_gui = '#626262'
 let indentLine_char = '|'
-set colorcolumn=80
+"set colorcolumn=80
 
 " File browsing/access
 let NERDTreeShowHidden=1
