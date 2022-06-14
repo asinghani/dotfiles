@@ -36,5 +36,25 @@ if [ -f ~/.host-cmu-cclub ]; then
     source ~/.config_linux
 fi
 
+if [ -f ~/.host-lambda1 ]; then
+    source ~/.lambda1
+    source ~/.config_linux
+fi
+
+if [ -f ~/.host-lambda2 ]; then
+    source ~/.lambda2
+    source ~/.config_linux
+fi
+
+if [ -f ~/.host-lambda3 ]; then
+    source ~/.lambda3
+    source ~/.config_linux
+fi
+
+if [ -f ~/.host-lambda4 ]; then
+    source ~/.lambda4
+    source ~/.config_linux
+fi
+
 # Git dotfile manager
 alias config='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
