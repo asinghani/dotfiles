@@ -72,6 +72,14 @@ else
     colorscheme monokai_pro
 endif
 
+" Deal with TMUX
+if &term =~ '^screen'
+	if has("mouse_sgr")
+		set ttymouse=sgr
+	else
+		set ttymouse=xterm2
+	end
+endif
 
 
 " Generic display and text-editing config
