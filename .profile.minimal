@@ -1,0 +1,304 @@
+export EDITOR="vim"
+export PYTHONDONTWRITEBYTECODE=1
+
+alias kall='kill %{1..105} 2&> /dev/null'
+alias tmux="tmux -u" # tmux utf-8
+alias v="vim"
+
+
+
+# UTILS
+bold=
+underline=
+reset=
+purple=
+red=
+green=
+tan=
+blue=
+
+if [[ $- == *i* ]]; then
+    bold=$(tty -s && tput bold)
+    underline=$(tty -s && tput sgr 0 1)
+    reset=$(tty -s && tput sgr0)
+
+    purple=$(tty -s && tput setaf 171)
+    red=$(tty -s && tput setaf 1)
+    green=$(tty -s && tput setaf 76)
+    tan=$(tty -s && tput setaf 3)
+    blue=$(tty -s && tput setaf 38)
+fi
+
+p_header() { printf "\n${bold}${purple}==========  %s  ==========${reset}\n" "$@";}
+p_arrow() { printf "➜ $*\n";}
+p_success() { printf "${green}✔ %s${reset}\n" "$@";}
+p_error() { printf "${red}✖ %s${reset}\n" "$@";}
+p_warning() { printf "${tan}➜ %s${reset}\n" "$@";}
+p_underline() { printf "${underline}${bold}%s${reset}\n" "$@";}
+p_bold() { printf "${bold}%s${reset}\n" "$@";}
+p_note() { printf "${underline}${bold}${blue}Note:${reset}  ${blue}%s${reset}\n" "$*";}
+
+
+if [ -n "$ZSH_VERSION" ]; then
+    # Zsh version of seek_confirmation
+    seek_confirmation() {
+        printf "\n${bold}$*${reset}"
+        read -q "REPLY? (y/n) " -n 1
+        printf "\n"
+    }
+elif [ -n "$BASH_VERSION" ]; then
+    # Bash version of seek_confirmation
+    seek_confirmation() {
+        printf "\n${bold}$*${reset}"
+        read -p " (y/n) " -n 1
+        printf "\n"
+    }
+fi
+
+is_confirmed() {
+    if [[ "$REPLY" =~ ^[Yy]$ ]]; then
+        return 0
+    fi
+    return 1
+}
+
+is_os() {
+    if [[ "${OSTYPE}" == $1* ]]; then
+        return 0
+    fi
+    return 1
+}
+
+is_mac() {
+    is_os "darwin"
+}
+
+alias succeed="p_success Succeeding...;"
+alias fail="p_error Failing...; intentionally_fail; "
+alias nocolor="sed 's/\x1b\[[0-9;]*m//g'"
+
+
+
+
+
+
+# PROMPT
+Black='\x01\e[0;30m\x02'
+Red='\x01\e[0;31m\x02'
+Green='\x01\e[0;32m\x02'
+Yellow='\x01\e[0;33m\x02'
+Blue='\x01\e[0;34m\x02'
+Purple='\x01\e[0;35m\x02'
+Cyan='\x01\e[0;36m\x02'
+White='\x01\e[0;37m\x02'
+Grey='\x01\e[0;2;242;242;242m\x02'
+
+BBlack='\x01\e[1;30m\x02'
+BRed='\x01\e[1;31m\x02'
+BGreen='\x01\e[1;32m\x02'
+BYellow='\x01\e[1;33m\x02'
+BBlue='\x01\e[1;34m\x02'
+BPurple='\x01\e[1;35m\x02'
+BCyan='\x01\e[1;36m\x02'
+BWhite='\x01\e[1;37m\x02'
+
+Reset='\x01\e[m\x02'
+
+successFail () { 
+    if [ $lastStatus -eq 0 ]; then
+        printf "${Green}✔ ${Reset}";
+    else
+        printf "${Red}✖ ${Reset}";
+    fi;
+}
+
+printHostname () {
+    printf "${BGreen}$(whoami)@$(hostname -s)${Reset}"; 
+}
+
+getDir() {
+    dir=$(pwd);
+    replace="~";
+    printf "${BBlue}${dir/$HOME/$replace}${Reset}";
+}
+
+gitStatus () {
+    gitpart=""
+
+    if git ls-files ./ --error-unmatch >/dev/null 2>/dev/null ; then
+        stash=$(git stash list | wc -l)
+        mod=$(git status -s --porcelain | egrep -v "^\?\?"| grep -E "^.{0,1}[RM]"|wc -l)
+        add=$(git status -s --porcelain | egrep -v "^\?\?"| grep -E "^.{0,1}A"|wc -l)
+        del=$(git status -s --porcelain | egrep -v "^\?\?"| grep -E "^.{0,1}D"|wc -l)
+
+        stash="$(echo -e "${stash}" | tr -d '[[:space:]]')"
+        mod="$(echo -e "${mod}" | tr -d '[[:space:]]')"
+        add="$(echo -e "${add}" | tr -d '[[:space:]]')"
+        del="$(echo -e "${del}" | tr -d '[[:space:]]')"
+
+        if [ -e ./.gitmodules ] ; then
+            submod=$(git submodule | wc -l)
+            submodule_info=" | ${BBlue}SM: ${BYellow}$submod$Reset"
+        else
+            submodule_info="$Reset"
+        fi
+
+        gitStatus=$(git status | grep -e "^# Your branch is")
+
+        if echo $gitStatus | grep 'ahead' > /dev/null ; then
+            num=$(echo $gitStatus | grep -o "[0-9]*")
+            rstat=" ${BBlue}U:${BYellow}->${BRed}$num$Reset"
+        elif echo $gitStatus | grep 'behind' > /dev/null ; then
+            num=$(echo $gitStatus | grep -o "[0-9]*")
+            rstat=" ${BBlue}U:${BYellow}<-${BRed}$num$Reset"
+        else
+            rstat=""
+        fi
+
+
+
+        if [ $mod -gt 0 ] ; then
+            mod="$Red M: $mod$Reset"
+        else
+            mod="$Green M: $mod$Reset"
+        fi
+        if [ $add -gt 0 ] ; then
+            add="$Red A: $add$Reset"
+        else
+            add="$Green A: $add$Reset"
+        fi
+        if [ $del -gt 0 ] ; then
+            del="$Red D: $del$Reset"
+        else
+            del="$Green D: $del$Reset"
+        fi
+        if [ $stash -gt 0 ] ; then
+            stash="$BBlue S: $stash$Reset"
+        else
+            stash=""
+        fi
+
+        repo=$(git branch | grep -e "^\*"| awk '{print $2}')
+        gitpart="(${Grey}$repo${Reset} |$mod$add$del$stash$rstat$submodule_info )"
+        printf "$gitpart"
+    fi
+}
+
+function timer_start {
+    timer=${timer:-$SECONDS}
+}
+
+function timer_stop {
+    if [ -z "$timer_started" ]; then trap 'timer_start' DEBUG; fi
+    timer_started="started"
+    timer_show=$(($SECONDS-$timer))
+    unset timer
+}
+
+
+prompt () {
+    lastStatus=$?;
+    printf "\n";
+    
+    DASHES=$(printf "%*s" $(($(tput cols)-10)) "-" | sed "s/ /-/g")
+    printf "${DASHES//-/ }" # Replaces dashes with space and prints
+    printf "${Yellow}$(date +"%I:%M:%S ")${Reset}";
+    printf "\r";
+    
+    if [[ "$SSH_CONNECTION" != '' ]]; then
+    	printHostname;
+    	printf " ";
+    fi
+
+    getDir;
+    printf " ";
+    # gitStatus;
+    
+    
+    printf "\n";
+    #printf "${timer_show}"
+    if [[ $EUID -ne 0 ]]; then
+    	if [ $lastStatus -eq 0 ]; then
+    		printf "${Green}\$ ${Reset}";
+    	else
+    		printf "${Red}\$ ${Reset}";
+    	fi;
+    else
+        printf "# ";
+    fi
+}
+
+setopt PROMPT_SUBST 2>/dev/null;
+export PS1="\$(prompt)";
+export PROMPT="\$(prompt)";
+
+
+# ALIASES
+
+cdl() { builtin cd "$@"; ll; }
+
+# Various options for moving forward/back in directories
+alias cd..="cd ../"
+alias ..="cd ../"
+alias ...="cd ../../"
+alias .1="cd ../"
+alias .2="cd ../../"
+alias .3="cd ../../../"
+alias .4="cd ../../../../"
+alias .5="cd ../../../../../"
+alias .6="cd ../../../../../../"
+
+# Useful ls presets
+alias la="ls -lah"
+alias ll="ls -lh"
+alias lal="la -lah"
+alias l="ls"
+alias sl="ls"
+
+# Other directory commands
+alias ~="cd ~"
+
+alias path="realpath"
+
+
+
+
+trash () { mkdir -p ~/.Trash; command mv "$@" ~/.Trash; }
+alias del="trash"
+
+extract () {
+    if [[ -f $1 ]] ; then
+        case $1 in
+            *.tar.bz2)   tar xjf $1     ;;
+            *.tar.gz)    tar xzf $1     ;;
+            *.bz2)       bunzip2 $1     ;;
+            *.rar)       unrar e $1     ;;
+            *.gz)        gunzip $1      ;;
+            *.tar)       tar xf $1      ;;
+            *.tbz2)      tar xjf $1     ;;
+            *.tgz)       tar xzf $1     ;;
+            *.zip)       unzip $1       ;;
+            *.Z)         uncompress $1  ;;
+            *.7z)        7z x $1        ;;
+            *)     echo "'$1' cannot be extracted" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+
+alias search="find . -name "
+qf () { /usr/bin/find . -name "$@" ; }
+
+
+
+
+repeat () {
+    while true
+    do
+        read -p "Press [ENTER] to run $1"
+        $@
+        printf "\n"
+    done
+}
+
