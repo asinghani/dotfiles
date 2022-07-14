@@ -95,15 +95,17 @@ randMAC () {
 	openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'
 }
 
+randstr () {
+	openssl rand -hex $1 | head -c $1
+}
+
+randhex () {
+	openssl rand -hex $1 | head -c $1
+}
+
 # ------------------------------------
 # 5. Misc
 # ------------------------------------
-
-viewmd() {
-    OUT_FILE=$(date | md5)
-    mdpdf $1 "/tmp/md_$OUT_FILE.pdf"
-    open "/tmp/md_$OUT_FILE.pdf"
-}
 
 transfer() { if [ $# -eq 0 ]; then echo -e "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi
 tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; }
@@ -137,22 +139,4 @@ fromafs() {
     if [ "$#" -eq 2 ]; then
         scp $AFS_USER@$AFS_MACHINE:$1 $2
     fi
-}
-
-# 14-741 / 18-631
-741-browser() {
-	chromium --proxy-server="socks://localhost:8123" "http://192.168.2.82/problems"
-}
-
-741-pwntools() {
-	echo 'context.proxy = (socks.SOCKS5, "localhost", 8123)'
-}
-
-741-tunnel() {
-	echo "Starting tunnel..."
-	sshpass -f $HOME/.741-password ssh -D 8123 -C -q -N -o ControlPersist=no tunneler@ctf.ini.cmu.edu
-}
-
-741-shell() {
-	ssh -o ProxyCommand='nc -x localhost:8123 %h %p' asinghan14741@192.168.2.83
 }
