@@ -11,7 +11,7 @@ Plugin 'VundleVim/Vundle.vim'
 " List of plugins
 
 if $USE_TABNINE == "1"
-    Plugin 'zxqfl/tabnine-vim'
+    "Plugin 'zxqfl/tabnine-vim'
 endif
 
 " Fundamental
@@ -35,6 +35,7 @@ Plugin 'sheerun/vim-polyglot'
 Plugin 'jeetsukumaran/vim-pythonsense'
 Plugin 'kylelaker/riscv.vim'
 Plugin 'vhda/verilog_systemverilog.vim'
+Plugin 'ARM9/arm-syntax-vim'
 
 " Colors
 Plugin 'phanviet/vim-monokai-pro'
@@ -163,6 +164,7 @@ autocmd ColorScheme * highlight VertSplit cterm=NONE ctermfg=Green ctermbg=NONE
 
 " File-specific syntax config
 autocmd BufNewFile,BufRead *.md set filetype=markdown
+autocmd BufNewFile,BufRead *.fsm set filetype=python
 
 " Avoid conceal issues with markdown/json
 let g:vim_json_syntax_conceal = 0
@@ -193,7 +195,7 @@ let g:syntastic_check_on_wq = 0
 let g:indentLine_color_term = 241
 let g:indentLine_color_gui = '#626262'
 let indentLine_char = '|'
-set colorcolumn=80
+"set colorcolumn=80
 
 " File browsing/access
 let NERDTreeShowHidden=1

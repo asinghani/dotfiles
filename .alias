@@ -82,7 +82,7 @@ alias viminstall="vim +PluginInstall +qall"
 # ------------------------------------
 # 3. Development
 # ------------------------------------
-alias kall='kill %{1..105} 2&> /dev/null'
+alias kall='kill -9 %{1..105} 2&> /dev/null'
 
 # tmux utf-8
 alias tmux="tmux -u"

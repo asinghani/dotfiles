@@ -1,5 +1,5 @@
 # local config
-export PATH="$HOME/workspace/pypy3.7/bin:$HOME/workspace/bin:$HOME/workspace/sejda-console/bin:/Users/anish/.local/bin:$PATH"
+export PATH="$HOME/Library/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.2.0-1.2.1/.content/bin:$HOME/workspace/pypy3.7/bin:$HOME/workspace/bin:$HOME/workspace/sejda-console/bin:/Users/anish/.local/bin:$PATH"
 
 export GHIDRA_ROOT="$HOME/workspace/ghidra"
 
@@ -11,3 +11,48 @@ alias reBTT='killall -9 BetterTouchTool; open /Applications/BetterTouchTool.app'
 export USE_TABNINE=1
 
 export RISCV=riscv64-unknown-elf-
+
+# VSCode `code` command
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
+# Conda setup
+export PATH="$HOME/workspace/miniconda3/condabin:$PATH"
+
+conda-init() {
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('/Users/anish/workspace/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "/Users/anish/workspace/miniconda3/etc/profile.d/conda.sh" ]; then
+            . "/Users/anish/workspace/miniconda3/etc/profile.d/conda.sh"
+        else
+            export PATH="/Users/anish/workspace/miniconda3/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+    conda deactivate
+    # <<< conda initialize <<<
+
+    export PATH="$HOME/workspace/miniconda3/bin:$PATH"
+    if [ "$1" ]; then
+        conda activate $1
+    else
+        conda activate base
+    fi
+}
+
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+source $HOME/.cargo/env
+
+# 15-494 cozmo tools
+export PATH=~/workspace/cozmo-tools:$PATH
+export PYTHONPATH=~/workspace/cozmo-tools:$PYTHONPATH
+
+# RPi Pico
+export PICO_SDK_PATH=/Users/anish/workspace/pico-sdk
+export PICO_EXTRAS_PATH=/Users/anish/workspace/pico-extras
+
+alias picoocd="~/workspace/openocd/src/openocd"
