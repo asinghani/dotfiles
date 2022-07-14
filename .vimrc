@@ -73,6 +73,14 @@ else
     colorscheme monokai_pro
 endif
 
+" Deal with TMUX
+if &term =~ '^screen'
+	if has("mouse_sgr")
+		set ttymouse=sgr
+	else
+		set ttymouse=xterm2
+	end
+endif
 
 
 " Generic display and text-editing config
@@ -178,6 +186,9 @@ let g:indentLine_concealcursor = ""
 " Execution configs (mildly useful)
 command Python :vertical terminal python3 %
 command Python3 :vertical terminal python3 % 
+
+" Very experimental Yosys execution
+command Ys !yosys -qp "read_verilog -sv %; synth_ice40 -flatten; tee -o /dev/stdout stat"
 
 
 " Other misc syntax-related fixing
