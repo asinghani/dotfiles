@@ -1,15 +1,6 @@
 # local config
-export PATH="$HOME/Library/xPacks/@xpack-dev-tools/riscv-none-embed-gcc/10.2.0-1.2.1/.content/bin:$HOME/workspace/pypy3.7/bin:$HOME/workspace/bin:$HOME/workspace/sejda-console/bin:/Users/anish/.local/bin:$PATH"
-
+export PATH="$HOME/workspace/bin:$HOME/workspace/sejda-console/bin:/Users/anish/.local/bin:$PATH"
 export GHIDRA_ROOT="$HOME/workspace/ghidra"
-
-export ROOT="/Users/anish/projects"
-
-alias respot='killall -9 Spotify ; open /Applications/Spotify.app -gj; sleep 0.5; osascript -e '\''tell application "Spotify" to play'\'''
-alias reBTT='killall -9 BetterTouchTool; open /Applications/BetterTouchTool.app'
-
-export USE_TABNINE=1
-
 export RISCV=riscv64-unknown-elf-
 
 # VSCode `code` command
@@ -45,14 +36,6 @@ conda-init() {
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-source $HOME/.cargo/env
-
-# 15-494 cozmo tools
-export PATH=~/workspace/cozmo-tools:$PATH
-export PYTHONPATH=~/workspace/cozmo-tools:$PYTHONPATH
-
 # RPi Pico
 export PICO_SDK_PATH=/Users/anish/workspace/pico-sdk
 export PICO_EXTRAS_PATH=/Users/anish/workspace/pico-extras
-
-alias picoocd="~/workspace/openocd/src/openocd"
