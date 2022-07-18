@@ -8,9 +8,18 @@ export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
 export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
 
 # local config
-export PATH="$HOME/workspace/bin:$HOME/workspace/sejda-console/bin:/Users/anish/.local/bin:$PATH"
+export PATH="$HOME/workspace/oss-cad-suite/bin:$HOME/workspace/bin:$HOME/workspace/sejda-console/bin:/Users/anish/.local/bin:$PATH"
 export GHIDRA_ROOT="$HOME/workspace/ghidra"
-export RISCV=riscv64-unknown-elf-
+export RISCV=riscv-none-elf-
+
+# node
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# xpm
+XPACK_PATHS=$(find ~/Library/xPacks/@xpack-dev-tools -type d -name ".content" | while read line; do printf "${line}/bin:"; done)
+export PATH="$PATH:$XPACK_PATHS"
 
 # VSCode `code` command
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
