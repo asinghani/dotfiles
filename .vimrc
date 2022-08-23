@@ -28,7 +28,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Raimondi/delimitMate'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Yggdroot/indentLine'
-Plugin 'welle/context.vim' 
+Plugin 'wellle/context.vim' 
 
 " Language support
 Plugin 'geoffharcourt/vim-matchit'
