@@ -7,6 +7,13 @@ export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
 export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
 export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
 
+# macports
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+export MANPATH="/opt/local/share/man:$MANPATH"
+
+# iterm2
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
 # local config
 export PATH="$HOME/workspace/oss-cad-suite/bin:$HOME/workspace/bin:$HOME/workspace/sejda-console/bin:/Users/anish/.local/bin:$PATH"
 export GHIDRA_ROOT="$HOME/workspace/ghidra"
@@ -57,3 +64,7 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 # RPi Pico
 export PICO_SDK_PATH=/Users/anish/workspace/pico-sdk
 export PICO_EXTRAS_PATH=/Users/anish/workspace/pico-extras
+
+alias openbb="/Applications/OpenBB\ Terminal/OpenBB\ Terminal"
+alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+

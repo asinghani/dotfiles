@@ -28,6 +28,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Raimondi/delimitMate'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Yggdroot/indentLine'
+Plugin 'welle/context.vim' 
 
 " Language support
 Plugin 'geoffharcourt/vim-matchit'
@@ -36,6 +37,8 @@ Plugin 'jeetsukumaran/vim-pythonsense'
 Plugin 'kylelaker/riscv.vim'
 Plugin 'vhda/verilog_systemverilog.vim'
 Plugin 'ARM9/arm-syntax-vim'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
+Plugin 'quarto-dev/quarto-vim' 
 
 " Colors
 Plugin 'phanviet/vim-monokai-pro'
