@@ -35,6 +35,7 @@ Plugin 'sheerun/vim-polyglot'
 Plugin 'jeetsukumaran/vim-pythonsense'
 Plugin 'kylelaker/riscv.vim'
 Plugin 'vhda/verilog_systemverilog.vim'
+Plugin 'ARM9/arm-syntax-vim'
 
 " Colors
 Plugin 'phanviet/vim-monokai-pro'
@@ -163,6 +164,7 @@ autocmd ColorScheme * highlight VertSplit cterm=NONE ctermfg=Green ctermbg=NONE
 
 " File-specific syntax config
 autocmd BufNewFile,BufRead *.md set filetype=markdown
+au BufNewFile,BufRead *.s,*.S set filetype=arm
 
 " Avoid conceal issues with markdown/json
 let g:vim_json_syntax_conceal = 0
