@@ -15,7 +15,7 @@ export NVM_DIR="$HOME/.nvm"
 export QSYS_ROOTDIR="/opt/Intel/quartus/sopc_builder/bin"
 
 # Local vars
-export PATH="/home/anish/workspace/bin:$PATH:/home/anish/.local/bin:/home/anish/.cargo/bin:/home/anish/workspace/xpack-riscv-none-embed-gcc-10.1.0-1.1/bin:/home/anish/workspace/selenium"
+export PATH="/home/anish/workspace/gcc-arm-none-eabi-10.3-2021.10/bin:/home/anish/workspace/bin:$PATH:/home/anish/.local/bin:/home/anish/.cargo/bin:/home/anish/workspace/xpack-riscv-none-embed-gcc-10.1.0-1.1/bin:/home/anish/workspace/selenium"
 export MAKEFLAGS="-j16"
 
 # ESP-IDF
@@ -29,3 +29,10 @@ spot() {
 
 . "$HOME/.cargo/env"
 export PATH=$PATH:/opt/riscv32i/bin
+
+export OPENLANE_ROOT=$HOME/workspace/openlane_new
+export PDK_ROOT=$HOME/workspace/pdks_new
+#export OPENLANE_TAG=mpw-4
+export PRECHECK_ROOT=$HOME/workspace/efabless-precheck
+
+export QSYS_ROOTDIR="/home/anish/intelFPGA_lite/21.1/quartus/sopc_builder/bin"

@@ -175,6 +175,7 @@ autocmd ColorScheme * highlight VertSplit cterm=NONE ctermfg=Green ctermbg=NONE
 
 " File-specific syntax config
 autocmd BufNewFile,BufRead *.md set filetype=markdown
+au BufNewFile,BufRead *.s,*.S set filetype=arm
 autocmd BufNewFile,BufRead *.fsm set filetype=python
 
 " Avoid conceal issues with markdown/json
