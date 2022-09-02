@@ -159,3 +159,7 @@ fromafs() {
 	echo "Starting tunnel..."
     sshpass -p $(tail -n 1 $HOME/.735-creds) ssh -D 8123 -C -q -N -o ControlPersist=no $(head -n 1 $HOME/.735-creds)
 }
+
+735-nc() {
+    nc -X 5 -x localhost:8123 $1 $2
+}
