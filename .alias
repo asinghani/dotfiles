@@ -144,3 +144,18 @@ fromafs() {
         scp $AFS_USER@$AFS_MACHINE:$1 $2
     fi
 }
+
+
+# Useful tools for interacting with INI server
+735-browser() {
+	chromium --proxy-server="socks://localhost:8123" "http://192.168.2.98:8000/"
+}
+
+735-pwntools() {
+	echo 'context.proxy = (socks.SOCKS5, "localhost", 8123)'
+}
+
+735-tunnel() {
+	echo "Starting tunnel..."
+    sshpass -p $(tail -n 1 $HOME/.735-creds) ssh -D 8123 -C -q -N -o ControlPersist=no $(head -n 1 $HOME/.735-creds)
+}
