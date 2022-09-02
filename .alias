@@ -163,3 +163,7 @@ fromafs() {
 735-nc() {
     nc -X 5 -x localhost:8123 $1 $2
 }
+
+735-curl() {
+    curl --socks5-hostname localhost:8123 $1
+}
