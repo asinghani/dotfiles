@@ -11,7 +11,7 @@ Plugin 'VundleVim/Vundle.vim'
 " List of plugins
 
 if $USE_TABNINE == "1"
-    Plugin 'zxqfl/tabnine-vim'
+    "Plugin 'zxqfl/tabnine-vim'
 endif
 
 " Fundamental
@@ -28,6 +28,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Raimondi/delimitMate'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Yggdroot/indentLine'
+Plugin 'wellle/context.vim' 
 
 " Language support
 Plugin 'geoffharcourt/vim-matchit'
@@ -36,6 +37,8 @@ Plugin 'jeetsukumaran/vim-pythonsense'
 Plugin 'kylelaker/riscv.vim'
 Plugin 'vhda/verilog_systemverilog.vim'
 Plugin 'ARM9/arm-syntax-vim'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
+Plugin 'quarto-dev/quarto-vim' 
 
 " Colors
 Plugin 'phanviet/vim-monokai-pro'
@@ -73,6 +76,14 @@ else
     colorscheme monokai_pro
 endif
 
+" Deal with TMUX
+if &term =~ '^screen'
+	if has("mouse_sgr")
+		set ttymouse=sgr
+	else
+		set ttymouse=xterm2
+	end
+endif
 
 
 " Generic display and text-editing config
@@ -165,6 +176,7 @@ autocmd ColorScheme * highlight VertSplit cterm=NONE ctermfg=Green ctermbg=NONE
 " File-specific syntax config
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 au BufNewFile,BufRead *.s,*.S set filetype=arm
+autocmd BufNewFile,BufRead *.fsm set filetype=python
 
 " Avoid conceal issues with markdown/json
 let g:vim_json_syntax_conceal = 0
@@ -178,6 +190,9 @@ let g:indentLine_concealcursor = ""
 " Execution configs (mildly useful)
 command Python :vertical terminal python3 %
 command Python3 :vertical terminal python3 % 
+
+" Very experimental Yosys execution
+command Ys !yosys -qp "read_verilog -sv %; synth_ice40 -flatten; tee -o /dev/stdout stat"
 
 
 " Other misc syntax-related fixing
@@ -195,7 +210,7 @@ let g:syntastic_check_on_wq = 0
 let g:indentLine_color_term = 241
 let g:indentLine_color_gui = '#626262'
 let indentLine_char = '|'
-set colorcolumn=80
+"set colorcolumn=80
 
 " File browsing/access
 let NERDTreeShowHidden=1

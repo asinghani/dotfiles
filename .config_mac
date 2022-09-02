@@ -22,3 +22,7 @@ changeMAC () {
 	echo "New Address:"
 	ifconfig en0 | grep ether
 }
+
+subl () {
+    open -a "Sublime Text" $1
+}

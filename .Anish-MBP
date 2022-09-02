@@ -1,13 +1,70 @@
+
+# brew config
+export HOMEBREW_PREFIX="/opt/homebrew";
+export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
+export HOMEBREW_REPOSITORY="/opt/homebrew";
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
+export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
+export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
+
+# macports
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+export MANPATH="/opt/local/share/man:$MANPATH"
+
+# iterm2
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
 # local config
-export PATH="$HOME/workspace/pypy3.7/bin:$HOME/workspace/bin:$HOME/workspace/sejda-console/bin:/Users/anish/.local/bin:$PATH"
-
+export PATH="$HOME/workspace/oss-cad-suite/bin:$HOME/workspace/bin:$HOME/workspace/sejda-console/bin:/Users/anish/.local/bin:$PATH"
 export GHIDRA_ROOT="$HOME/workspace/ghidra"
+export RISCV=riscv-none-elf-
 
-export ROOT="/Users/anish/projects"
+# node
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-alias respot='killall -9 Spotify ; open /Applications/Spotify.app -gj; sleep 0.5; osascript -e '\''tell application "Spotify" to play'\'''
-alias reBTT='killall -9 BetterTouchTool; open /Applications/BetterTouchTool.app'
+# xpm
+XPACK_PATHS=$(find ~/Library/xPacks/@xpack-dev-tools -type d -name ".content" | while read line; do printf "${line}/bin:"; done)
+export PATH="$PATH:$XPACK_PATHS"
 
-export USE_TABNINE=1
+# VSCode `code` command
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
-export RISCV=riscv64-unknown-elf-
+# Conda setup
+export PATH="$HOME/workspace/miniconda3/condabin:$PATH"
+
+conda-init() {
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('/Users/anish/workspace/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "/Users/anish/workspace/miniconda3/etc/profile.d/conda.sh" ]; then
+            . "/Users/anish/workspace/miniconda3/etc/profile.d/conda.sh"
+        else
+            export PATH="/Users/anish/workspace/miniconda3/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+    conda deactivate
+    # <<< conda initialize <<<
+
+    export PATH="$HOME/workspace/miniconda3/bin:$PATH"
+    if [ "$1" ]; then
+        conda activate $1
+    else
+        conda activate base
+    fi
+}
+
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+# RPi Pico
+export PICO_SDK_PATH=/Users/anish/workspace/pico-sdk
+export PICO_EXTRAS_PATH=/Users/anish/workspace/pico-extras
+
+alias openbb="/Applications/OpenBB\ Terminal/OpenBB\ Terminal"
+alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+

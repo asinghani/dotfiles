@@ -82,11 +82,15 @@ alias viminstall="vim +PluginInstall +qall"
 # ------------------------------------
 # 3. Development
 # ------------------------------------
-alias kall='kill %{1..105} 2&> /dev/null'
+alias kall='kill -9 %{1..105} 2&> /dev/null'
 
 # tmux utf-8
 alias tmux="tmux -u"
 alias v="vim"
+
+gh () {
+    git clone git@github.com:$1/$2.git $3
+}
 
 # ------------------------------------
 # 4. System Settings
@@ -95,15 +99,17 @@ randMAC () {
 	openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'
 }
 
+randstr () {
+	openssl rand -hex $1 | head -c $1
+}
+
+randhex () {
+	openssl rand -hex $1 | head -c $1
+}
+
 # ------------------------------------
 # 5. Misc
 # ------------------------------------
-
-viewmd() {
-    OUT_FILE=$(date | md5)
-    mdpdf $1 "/tmp/md_$OUT_FILE.pdf"
-    open "/tmp/md_$OUT_FILE.pdf"
-}
 
 transfer() { if [ $# -eq 0 ]; then echo -e "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi
 tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; }
@@ -139,20 +145,21 @@ fromafs() {
     fi
 }
 
-# 14-741 / 18-631
-741-browser() {
-	chromium --proxy-server="socks://localhost:8123" "http://192.168.2.82/problems"
+
+# Useful tools for interacting with INI server
+735-browser() {
+	chromium --proxy-server="socks://localhost:8123" "http://192.168.2.98:8000/"
 }
 
-741-pwntools() {
+735-pwntools() {
 	echo 'context.proxy = (socks.SOCKS5, "localhost", 8123)'
 }
 
-741-tunnel() {
+735-tunnel() {
 	echo "Starting tunnel..."
-	sshpass -f $HOME/.741-password ssh -D 8123 -C -q -N -o ControlPersist=no tunneler@ctf.ini.cmu.edu
+    sshpass -p $(tail -n 1 $HOME/.735-creds) ssh -D 8123 -C -q -N -o ControlPersist=no $(head -n 1 $HOME/.735-creds)
 }
 
-741-shell() {
-	ssh -o ProxyCommand='nc -x localhost:8123 %h %p' asinghan14741@192.168.2.83
+735-nc() {
+    nc -X 5 -x localhost:8123 $1 $2
 }

@@ -34,3 +34,5 @@ export OPENLANE_ROOT=$HOME/workspace/openlane_new
 export PDK_ROOT=$HOME/workspace/pdks_new
 #export OPENLANE_TAG=mpw-4
 export PRECHECK_ROOT=$HOME/workspace/efabless-precheck
+
+export QSYS_ROOTDIR="/home/anish/intelFPGA_lite/21.1/quartus/sopc_builder/bin"

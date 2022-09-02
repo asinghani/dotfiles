@@ -10,11 +10,11 @@ export CCLUB_HOME=/afs/club.cc.cmu.edu/usr/asinghan
 
 export CMU_HOME=$AFS_HOME
 
-export PATH=$AFS_HOME/workspace/bin:$AFS_HOME/workspace/scripts:$AFS_HOME/workspace/tmux:$AFS_HOME/workspace/git:$AFS_HOME/workspace/htop:$PATH
+#export PATH=$AFS_HOME/workspace/bin:$AFS_HOME/workspace/scripts:$AFS_HOME/workspace/tmux:$AFS_HOME/workspace/git:$AFS_HOME/workspace/htop:$PATH
 
 # cclub utilities
-export PATH=$PATH:/afs/club.cc.cmu.edu/contrib/bin
-export LD_LIBRARY_PATH=/afs/club.cc.cmu.edu/contrib/lib:$LD_LIBRARY_PATH
+source /afs/club.cc.cmu.edu/contrib/etc/bashrc.sh
+source /afs/club.cc.cmu.edu/contrib/etc/bashrc.experimental.sh
 
 # 15-122 stuff
 export PATH=/afs/andrew/course/15/122/bin:$PATH
