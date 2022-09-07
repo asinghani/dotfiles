@@ -32,33 +32,6 @@ export PATH="$PATH:$XPACK_PATHS"
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
 # Conda setup
-export PATH="$HOME/workspace/miniconda3/condabin:$PATH"
-
-conda-init() {
-    # >>> conda initialize >>>
-    # !! Contents within this block are managed by 'conda init' !!
-    __conda_setup="$('/Users/anish/workspace/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-    if [ $? -eq 0 ]; then
-        eval "$__conda_setup"
-    else
-        if [ -f "/Users/anish/workspace/miniconda3/etc/profile.d/conda.sh" ]; then
-            . "/Users/anish/workspace/miniconda3/etc/profile.d/conda.sh"
-        else
-            export PATH="/Users/anish/workspace/miniconda3/bin:$PATH"
-        fi
-    fi
-    unset __conda_setup
-    conda deactivate
-    # <<< conda initialize <<<
-
-    export PATH="$HOME/workspace/miniconda3/bin:$PATH"
-    if [ "$1" ]; then
-        conda activate $1
-    else
-        conda activate base
-    fi
-}
-
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # RPi Pico
@@ -67,4 +40,19 @@ export PICO_EXTRAS_PATH=/Users/anish/workspace/pico-extras
 
 alias openbb="/Applications/OpenBB\ Terminal/OpenBB\ Terminal"
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+alias ts="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/anish/workspace/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/anish/workspace/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/anish/workspace/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/anish/workspace/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
