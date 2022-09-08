@@ -167,3 +167,7 @@ fromafs() {
 735-curl() {
     curl --socks5-hostname localhost:8123 $1
 }
+
+735-dl() {
+    curl -O --socks5-hostname localhost:8123 $1
+}
