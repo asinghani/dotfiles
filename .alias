@@ -200,4 +200,3 @@ campus-browser1() {
     m_pid=$!
     ssh -D 8123 -C -o ControlPersist=no asinghan@sideband.wifi.local.cmu.edu bash -c 'echo "============ Proxy Connected ============"; cat;'
     kill -9 $m_pid
-}

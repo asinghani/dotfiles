@@ -36,3 +36,7 @@ export PDK_ROOT=$HOME/workspace/pdks_new
 export PRECHECK_ROOT=$HOME/workspace/efabless-precheck
 
 export QSYS_ROOTDIR="/home/anish/intelFPGA_lite/21.1/quartus/sopc_builder/bin"
+
+export PATH=/home/anish/intelFPGA_lite/21.1/quartus/bin:$PATH
+
+alias quartus="/home/anish/intelFPGA_lite/21.1/quartus/bin/quartus --64bit"
