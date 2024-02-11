@@ -77,6 +77,14 @@ run_repeat () {
     done
 }
 
+always () {
+    while true
+    do
+        $@
+        printf "\n"
+    done
+}
+
 alias viminstall="vim +PluginInstall +qall"
 
 # ------------------------------------
@@ -123,11 +131,11 @@ toafs() {
     fi
 
     if [ "$#" -eq 1 ]; then
-        scp $1 $AFS_USER@$AFS_MACHINE:temp
+        scp "$1" $AFS_USER@$AFS_MACHINE:temp
     fi
 
     if [ "$#" -eq 2 ]; then
-        scp $1 $AFS_USER@$AFS_MACHINE:$2
+        scp "$1" $AFS_USER@$AFS_MACHINE:"$2"
     fi
 }
 
@@ -145,6 +153,18 @@ fromafs() {
     fi
 }
 
+
+# REQUIRES GNU SED, DOES NOT WORK WITH MACOS SED
+replaceall() {
+    grep -r "$1" .
+    seek_confirmation "Replace all?"
+    is_confirmed || return 1
+    if [[ "${OSTYPE}" == darwin* ]]; then
+        grep -rl "$1" . | xargs gsed -i 's/'"$1"'/'"$2"'/g'
+    else
+        grep -rl "$1" . | xargs sed -i 's/'"$1"'/'"$2"'/g'
+    fi
+}
 
 # Useful tools for interacting with INI server
 735-browser() {
@@ -166,4 +186,18 @@ fromafs() {
 
 735-curl() {
     curl --socks5-hostname localhost:8123 $1
+}
+
+campus-browser() {
+    chromium --proxy-server="socks://localhost:8123" >/dev/null 2>/dev/null &
+    m_pid=$!
+    ssh -D 8123 -C -o ControlPersist=no cmu2 bash -c 'echo "============ Proxy Connected ============"; cat;'
+    kill -9 $m_pid
+}
+
+campus-browser1() {
+    chromium --proxy-server="socks://localhost:8123" &
+    m_pid=$!
+    ssh -D 8123 -C -o ControlPersist=no asinghan@sideband.wifi.local.cmu.edu bash -c 'echo "============ Proxy Connected ============"; cat;'
+    kill -9 $m_pid
 }

@@ -14,3 +14,5 @@
 
 [credential]
 	helper = store
+[core]
+	excludesfile = /Users/anish/.anish-mbp-gitignore

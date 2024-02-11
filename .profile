@@ -58,3 +58,5 @@ fi
 
 # Git dotfile manager
 alias config='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+. "$HOME/.cargo/env"

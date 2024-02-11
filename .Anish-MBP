@@ -3,7 +3,13 @@
 export HOMEBREW_PREFIX="/opt/homebrew";
 export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
 export HOMEBREW_REPOSITORY="/opt/homebrew";
-export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
+
+if [ -z "${IN_NIX_SHELL}" ]; then
+    export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
+else
+    export PATH="$PATH:/opt/homebrew/bin:/opt/homebrew/sbin";
+fi
+
 export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
 export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
 
@@ -11,11 +17,21 @@ export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 export MANPATH="/opt/local/share/man:$MANPATH"
 
+# neovim
+alias nvim="PYTHONPATH=$PYTHONPATH:/Users/anish/.local/share/nvim/plugged/vim-matlab/rplugin/python3/vim_matlab nvim"
+alias matlab-server="/Users/anish/.local/share/nvim/plugged/vim-matlab/scripts/vim-matlab-server.py"
+
 # iterm2
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 # local config
-export PATH="$HOME/workspace/oss-cad-suite/bin:$HOME/workspace/bin:$HOME/workspace/sejda-console/bin:/Users/anish/.local/bin:$PATH"
+
+# Hacky workaround to make OpenOCD work in Nix -> Poetry nested shell
+if [ -z "${IN_NIX_SHELL}" ]; then
+    export PATH="$HOME/workspace/oss-cad-suite/bin:$HOME/workspace/bin:$HOME/workspace/sejda-console/bin:/Users/anish/.local/bin:$PATH"
+else
+    export PATH="$PATH:$HOME/workspace/oss-cad-suite/bin:$HOME/workspace/bin:$HOME/workspace/sejda-console/bin:/Users/anish/.local/bin"
+fi
 export GHIDRA_ROOT="$HOME/workspace/ghidra"
 export RISCV=riscv-none-elf-
 
@@ -38,6 +54,9 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 export PICO_SDK_PATH=/Users/anish/workspace/pico-sdk
 export PICO_EXTRAS_PATH=/Users/anish/workspace/pico-extras
 
+# FreeRTOS
+export FREERTOS_KERNEL_PATH=/Users/anish/workspace/FreeRTOS-Kernel
+
 alias openbb="/Applications/OpenBB\ Terminal/OpenBB\ Terminal"
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 alias ts="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
@@ -56,3 +75,28 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+eval "$(zoxide init bash)"
+
+alias homepage="cd ~/Dropbox/homepage; make edit"
+
+export PATH="$HOME/workspace/platform-tools:$PATH"
+
+alias esp="source ~/workspace/esp/esp-idf/export.sh"
+
+export PATH="$PATH:$HOME/workspace/dasm-2.20.14.1-osx-x64/"
+
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+export PATH="$PATH:$HOME/workspace/pypy3/bin"
+
+alias lsusb="/opt/homebrew/Cellar/lsusb/1.0/bin/lsusb"
+
+export PATH=$PATH:/opt/homebrew/Cellar/qt\@5/5.15.11/bin/
+
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
+
+export PATH="$PATH:$HOME/projects/ctf/ectf2024/2024-ectf-dev-scripts/scripts"

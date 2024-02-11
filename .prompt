@@ -110,6 +110,13 @@ function timer_stop {
     unset timer
 }
 
+getNix () {
+    if [ -z "${IN_NIX_SHELL}" ]; then
+        true # not in NIX
+    else
+        printf "${BGreen}(nix-shell)${Reset} ";
+    fi
+}
 
 prompt () {
     lastStatus=$?;
@@ -125,6 +132,7 @@ prompt () {
     	printf " ";
     fi
 
+    getNix;
     getDir;
     printf " ";
     # gitStatus;
