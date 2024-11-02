@@ -3,6 +3,9 @@ filetype off
 
 runtime macros/matchit.vim
 
+" needs to be before polyglot is loaded
+let g:polyglot_disabled = ['rust']
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -22,12 +25,12 @@ Plugin 'kana/vim-submode'
 
 " File-related
 Plugin 'junegunn/fzf'
-Plugin 'scrooloose/nerdtree'
+"Plugin 'scrooloose/nerdtree'
 
 " Text-editing
-Plugin 'Raimondi/delimitMate'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'Yggdroot/indentLine'
+"Plugin 'Raimondi/delimitMate'
+"Plugin 'scrooloose/nerdcommenter'
+"Plugin 'Yggdroot/indentLine'
 "Plugin 'wellle/context.vim' 
 
 " Language support
@@ -44,6 +47,8 @@ Plugin 'quarto-dev/quarto-vim'
 Plugin 'phanviet/vim-monokai-pro'
 Plugin 'altercation/vim-colors-solarized'
 
+Plugin 'tpope/vim-commentary'
+
 " Potentially useful plugins in the future
 "Plugin 'xolox/vim-easytags'
 "Plugin 'mattn/emmet-vim'
@@ -59,6 +64,9 @@ Plugin 'altercation/vim-colors-solarized'
 "Plugin 'christoomey/vim-tmux-navigator'
 "Plugin 'christoomey/rmvim.vim'
 
+Plugin 'liuchengxu/vim-which-key'
+
+Plugin 'sbdchd/neoformat'
 
 call vundle#end()
 
@@ -89,8 +97,8 @@ endif
 " Generic display and text-editing config
 set autoindent
 filetype plugin indent on
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 set splitbelow
 set splitright
@@ -102,9 +110,16 @@ set number
 set backspace=2
 set timeoutlen=1000 ttimeoutlen=0
 set ttyfast
+set showcmd
 silent! set re=1
 
 set modeline
+
+
+
+
+set undofile
+set noswapfile
 
 " Builtin command remappings
 let mapleader = ';'
@@ -167,6 +182,10 @@ endwhile
 " highlight python 'self', when followed by a comma, a period or a parenth
 augroup PythonCustomization
    :autocmd FileType python syn match pythonExceptions "\(\W\|^\)\@<=self\([\.,)]\)\@="
+augroup END
+
+augroup RustCstomization
+   :autocmd FileType rust syn keyword rustKeyword crate skipwhite skipempty
 augroup END
 
 highlight Pmenu ctermbg=gray guibg=gray
@@ -310,7 +329,7 @@ command! -nargs=* FileZFLocal call FZFLocal()
 nmap <leader>F :FileZFLocal<CR>
 
 command! -nargs=* FileRG call FZRG(expand("<cword>"), "--color=always")
-nmap f :FileRG<CR>
+"nmap f :FileRG<CR>
 
 
 "command! -nargs=* FileZLocalSearch call FZLocalSearch(expand("<cword>"))
@@ -318,7 +337,7 @@ nmap f :FileRG<CR>
 
 
 command! -nargs=* FileRG2 call FZRGInt()
-nmap F :FileRG2<CR>
+"nmap F :FileRG2<CR>
 
 
 " {{{ Launch FZF if vim launched with no files
@@ -1825,11 +1844,95 @@ nnoremap <silent> <Plug>(EasyAlignOperator) :set opfunc=<SID>easy_align_op<Enter
 
 
 
-
 " }}}
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+
+let uname_output = system("uname")
+let stripped_output = substitute(uname_output, "\n", "", "g")
+if stripped_output == "Darwin"
+    let g:platform = "macos"
+else
+    let g:platform = "linux"
+endif
+
+if g:platform == "macos"
+    set clipboard=unnamed,unnamedplus
+else
+    set clipboard=unnamedplus
+endif
+
+highlight WhichKeyFloating ctermbg=234
+
+set timeoutlen=500
+
+let g:which_key_map = {}
+let g:which_key_map.h = "which_key_ignore"
+let g:which_key_map.j = "which_key_ignore"
+let g:which_key_map.k = "which_key_ignore"
+let g:which_key_map.l = "which_key_ignore"
+call which_key#register(';', "g:which_key_map")
+
+nnoremap <silent> <leader> :<c-u>WhichKey ';'<CR>
+
+
+
+
+
+
+" ## added by OPAM user-setup for vim / base ## d611dd144a5764d46fdea4c0c2e0ba07 ## you can edit, but keep this line
+let s:opam_share_dir = system("opam var share")
+let s:opam_share_dir = substitute(s:opam_share_dir, '[\r\n]*$', '', '')
+
+let s:opam_configuration = {}
+
+function! OpamConfOcpIndent()
+  execute "set rtp^=" . s:opam_share_dir . "/ocp-indent/vim"
+endfunction
+let s:opam_configuration['ocp-indent'] = function('OpamConfOcpIndent')
+
+function! OpamConfOcpIndex()
+  execute "set rtp+=" . s:opam_share_dir . "/ocp-index/vim"
+endfunction
+let s:opam_configuration['ocp-index'] = function('OpamConfOcpIndex')
+
+function! OpamConfMerlin()
+  let l:dir = s:opam_share_dir . "/merlin/vim"
+  execute "set rtp+=" . l:dir
+endfunction
+let s:opam_configuration['merlin'] = function('OpamConfMerlin')
+
+let s:opam_packages = ["ocp-indent", "ocp-index", "merlin"]
+let s:opam_available_tools = []
+for tool in s:opam_packages
+  " Respect package order (merlin should be after ocp-index)
+  if isdirectory(s:opam_share_dir . "/" . tool)
+    call add(s:opam_available_tools, tool)
+    call s:opam_configuration[tool]()
+  endif
+endfor
+" ## end of OPAM user-setup addition for vim / base ## keep this line
+" ## added by OPAM user-setup for vim / ocp-indent ## f7663363eb5c1e81817a295630588ee7 ## you can edit, but keep this line
+if count(s:opam_available_tools,"ocp-indent") == 0
+  source "/Users/anish/.opam/default/share/ocp-indent/vim/indent/ocaml.vim"
+endif
+" ## end of OPAM user-setup addition for vim / ocp-indent ## keep this line
+
+
+let g:opambin = substitute(system('opam config var bin'),'\n$','','''')
+let g:neoformat_ocaml_ocamlformat = {
+            \ 'exe': g:opambin . '/ocamlformat',
+            \ 'no_append': 1,
+            \ 'stdin': 1,
+            \ 'args': ['--disable-outside-detected-project', '--name', '"%:p"', '-']
+            \ }
+
+let g:neoformat_enabled_ocaml = ['ocamlformat']
+
+
+inoreabbrev qbinds """""""""" Key Bindings """"""""""
 
